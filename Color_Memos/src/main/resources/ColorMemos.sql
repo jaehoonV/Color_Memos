@@ -1,0 +1,32 @@
+-- ColorMemos 데이터베이스
+
+-- 사용자 생성
+CREATE USER ColorMemos
+IDENTIFIED BY cm123
+DEFAULT TABLESPACE USERS
+TEMPORARY TABLESPACE TEMP;
+
+-- 계정 권한 부여
+GRANT CONNECT TO ColorMemos;
+GRANT RESOURCE TO ColorMemos;
+GRANT DBA TO ColorMemos;
+commit;
+
+-- 테이블 삭제
+DROP TABLE MEMBER CASCADE CONSTRAINTS;
+
+-- 테이블 생성
+/* 회원 */
+CREATE TABLE MEMBER (
+	USER_ID VARCHAR2(4000) NOT NULL, /* 회원아이디 */
+	PASSWORD VARCHAR(50) NOT NULL, /* 회원비밀번호 */
+	USER_NAME VARCHAR(50) NOT NULL /* 회원이름 */
+);
+
+ALTER TABLE MEMBER
+	ADD
+		CONSTRAINT PK_member
+		PRIMARY KEY (
+			USER_ID
+		);
+        
