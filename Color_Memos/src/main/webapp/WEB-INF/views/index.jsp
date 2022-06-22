@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Coler Memos</title>
+<title>Color Memos</title>
 <!-- css -->
 <link href="<c:url value="/resources/css/index.css"/>" rel="stylesheet">
 <!-- jQuery -->
@@ -25,15 +25,18 @@
 			<div class="left">
 				<div class="content">
 					<h2>Sign Up</h2>
-					<form id="form-signup" method="post" onsubmit="return false;">
+					<form id="joinForm" method="post" action="/join">
 						<div class="form-element form-stack">
-							<label for="username-signup" class="form-label">USER NAME</label> <input id="username-signup" type="text" name="username">
+							<label for="username" class="form-label">USER NAME</label> <input id="username" type="text" name="username">
 						</div>
 						<div class="form-element form-stack">
 							<label for="email" class="form-label">ID</label> <input id="email" type="email" name="email">
 						</div>
 						<div class="form-element form-stack">
-							<label for="password-signup" class="form-label">Password</label> <input id="password-signup" type="password" name="password">
+							<label for="password" class="form-label">Password</label> <input id="password" type="password" name="password">
+						</div>
+						<div class="form-element form-stack">
+							<label for="re-password" class="form-label">Re-Password</label> <input id="repassword" type="password" name="repassword">
 						</div>
 						<div class="form-element form-submit">
 							<button id="signUp" class="signup" type="submit" name="signup">Sign up</button>
@@ -45,7 +48,7 @@
 			<div class="right">
 				<div class="content">
 					<h2>Login</h2>
-					<form id="form-login" method="post" onsubmit="return false;">
+					<form id="loginForm" method="post" onsubmit="return false;">
 						<div class="form-element form-stack">
 							<label for="username-login" class="form-label">ID</label> <input id="username-login" type="text" name="username">
 						</div>
