@@ -1,9 +1,15 @@
 package com.ColorMemos.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ColorMemos.domain.MemberDTO;
@@ -43,6 +49,39 @@ public class MemberController {
 		System.out.println("password >>>>> " + memberDTO.getPassword());
 		memberService.register(memberDTO);
 		return "index";
+	}
+
+	// 로그인 post방식
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String Login(HttpServletRequest request, @RequestParam("email") String email,
+			@RequestParam("password") String password, HttpServletResponse response) throws Exception {
+
+		// 세션 생성
+		HttpSession session = request.getSession();
+
+		if (memberService.login(email, password)) {
+			session.setAttribute("email", email);
+		} else {
+			return "index";
+		}
+
+		return "redirect:/mainPage";
+	}
+	
+	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
+	public String projectMain(Model model, HttpServletRequest request, MemberDTO memberDTO) throws Exception {
+		// 세션 생성
+		HttpSession session = request.getSession();
+
+		// email 세션 가져옴
+		String email = (String) session.getAttribute("email");
+
+		// 회원 로그인 정보 가져옴
+		/* memberDTO = memberService.MemberInfo(email); */
+		// 모델에 회원 정보 set
+		/* model.addAttribute("memberInfo", memberDTO); */
+
+		return "mainPage";
 	}
 
 }

@@ -9,5 +9,8 @@ public interface MemberService {
 	
 	// 회원가입
 	public void register(MemberDTO memberDTO) throws Exception;
+	
+	// 로그인
+	public boolean login(String email, String password) throws Exception;
 
 }

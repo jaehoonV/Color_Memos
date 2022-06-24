@@ -48,12 +48,12 @@
 			<div class="right">
 				<div class="content">
 					<h2>Login</h2>
-					<form id="loginForm" method="post" onsubmit="return false;">
+					<form id="loginForm" method="post" action="/login">
 						<div class="form-element form-stack">
-							<label for="username-login" class="form-label">ID</label> <input id="username-login" type="text" name="username">
+							<label for="email" class="form-label">ID</label> <input id="email" type="text" name="email">
 						</div>
 						<div class="form-element form-stack">
-							<label for="password-login" class="form-label">Password</label> <input id="password-login" type="password" name="password">
+							<label for="password" class="form-label">Password</label> <input id="password" type="password" name="password">
 						</div>
 						<div class="form-element form-submit">
 							<button id="logIn" class="login" type="submit" name="login">Log In</button>

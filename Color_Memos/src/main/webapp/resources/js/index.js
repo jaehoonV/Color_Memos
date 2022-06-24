@@ -22,34 +22,6 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#loginCheck').click(function() {
-		var email = $('#email').val();
-		var password = $('#password').val();
-		// 이메일이나 비밀번호 미입력시 validation
-		if ($('#email').val() == "" || $('#password').val() == "") {
-			$('#loginForm').submit();
-		} else {
-			$.ajax({
-				type : "POST",
-				url : '/loginCheck',
-				data : {
-					email : email,
-					password : password
-				},
-				success : function(data) {
-					if (data == "true") {
-						$('#loginForm').submit();
-					} else if (data == "false") {
-						$('#auth_error').css('display', 'none');
-						$('#error').css('display', 'block');
-					} else if (data == "noauth") {
-						$('#error').css('display', 'none');
-						$('#auth_error').css('display', 'block');
-					}
-				}
-			});
-		}
-	});
 	$('#loginForm').validate({
 		rules : {
 			email : {

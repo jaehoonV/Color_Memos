@@ -9,5 +9,8 @@ public interface MemberMapper {
 	
 	// 회원가입
 	public void register(MemberDTO memberDTO) throws Exception;
+	
+	// 로그인
+	public int login(String email, String password) throws Exception;
 
 }

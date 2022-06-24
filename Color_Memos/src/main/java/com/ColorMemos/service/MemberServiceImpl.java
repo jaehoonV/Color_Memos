@@ -27,5 +27,14 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.register(memberDTO);
 		
 	}
+	
+	// 로그인
+	@Override
+	public boolean login(String email, String password) throws Exception {
+		if(memberMapper.login(email, password) > 0) {
+			return true;
+		}
+		return false;
+	}
 
 }
