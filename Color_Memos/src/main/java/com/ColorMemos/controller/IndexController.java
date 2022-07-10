@@ -30,7 +30,17 @@ public class IndexController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "index";
+		return "jsp/index";
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(Model model) {
+		
+		System.out.print("test");
+		
+		model.addAttribute("thymeleaf", "타임리프 테스트" );
+		
+		return "testview";
 	}
 	
 }

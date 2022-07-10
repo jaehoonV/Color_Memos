@@ -60,6 +60,9 @@
 							<button id="goRight" class="login off" name="signup">Sign Up</button>
 						</div>
 					</form>
+					<form id="test" method="get" action="/test">
+						<button type="submit" name="thymeleaf_test">thymeleaf_test</button>
+					</form>
 				</div>
 			</div>
 		</div>
