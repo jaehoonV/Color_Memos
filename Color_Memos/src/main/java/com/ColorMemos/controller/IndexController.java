@@ -33,14 +33,14 @@ public class IndexController {
 		return "jsp/index";
 	}
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@RequestMapping(value = "/th", method = RequestMethod.GET)
 	public String test(Model model) {
 		
 		System.out.print("test");
 		
 		model.addAttribute("thymeleaf", "타임리프 테스트" );
 		
-		return "testview";
+		return "index";
 	}
 	
 }

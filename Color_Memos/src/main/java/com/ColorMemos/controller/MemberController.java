@@ -67,7 +67,7 @@ public class MemberController {
 
 		return "redirect:/mainPage";
 	}
-	
+
 	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
 	public String projectMain(Model model, HttpServletRequest request, MemberDTO memberDTO) throws Exception {
 		// 세션 생성
@@ -81,7 +81,40 @@ public class MemberController {
 		// 모델에 회원 정보 set
 		/* model.addAttribute("memberInfo", memberDTO); */
 
-		return "mainPage";
+		return "jsp/mainPage";
+	}
+
+	// 로그인 post방식
+	@RequestMapping(value = "/th_login", method = RequestMethod.POST)
+	public String th_Login(HttpServletRequest request, @RequestParam("email") String email,
+			@RequestParam("password") String password, HttpServletResponse response) throws Exception {
+
+		// 세션 생성
+		HttpSession session = request.getSession();
+
+		if (memberService.login(email, password)) {
+			session.setAttribute("email", email);
+		} else {
+			return "index";
+		}
+
+		return "redirect:/th_mainPage";
+	}
+
+	@RequestMapping(value = "/th_mainPage", method = RequestMethod.GET)
+	public String th_projectMain(Model model, HttpServletRequest request, MemberDTO memberDTO) throws Exception {
+		// 세션 생성
+		HttpSession session = request.getSession();
+
+		// email 세션 가져옴
+		String email = (String) session.getAttribute("email");
+
+		// 회원 로그인 정보 가져옴
+		/* memberDTO = memberService.MemberInfo(email); */
+		// 모델에 회원 정보 set
+		/* model.addAttribute("memberInfo", memberDTO); */
+
+		return "th_mainPage";
 	}
 
 }

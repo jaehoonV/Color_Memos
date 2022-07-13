@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Main Page</title>
 </head>
 <body>
 	<div>HI, This page is MainPage.</div>
