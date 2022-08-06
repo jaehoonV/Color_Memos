@@ -80,7 +80,7 @@ $(document).ready(function() {
 				remote : "중복된 아이디입니다."
 
 			},
-			name : {
+			username : {
 				required : "이름을 입력해 주세요.",
 				rangelength : "이름은 {0}자에서 {1}자까지 사용 가능합니다."
 			},

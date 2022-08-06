@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+:root { 
+	--bg_color: #edf1f4;
+	--green_color: #00b01c;
+}
+
+body {
+	justify-content: center;
+	align-items: center;
+	background: var(--bg_color) !important;
+}
+
+.green_class {
+	background: var(--green_color);
+}
+
+#popup_memo_register{
+    border: 1px solid var(--green_color);
+    border-radius: 10px;
+    color: var(--bg_color);
+    padding: 3px 10px;
+    font-weight: 600;
+}
+
+#memo_register1 {
+	width: 30%;
+	height: 30%;
+	min-height: 350px;
+	border: 1px solid var(--green_color);
+	border-radius: 10px;
+	background: var(--green_color);
+	margin: 0 auto;
+	box-shadow: 15px 15px 20px rgb(0 0 0 / 25%), -15px -15px 20px #fff;
+}
+
+.memo_header{
+	padding: 0.5rem 1rem !important;
+}
+
+.memo_submit {
+	all: unset;
+	background: gray;
+	margin: 0 35%;
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	color: #fff;
+	border-radius: 4px;
+}
+
+.memo_submit:hover {
+	background: #7163c4;
+}
+
+.memo_register-modal {
+	max-width: 600px !important;
+}
+
+.memo_register-modal-content {
+	border-radius: 10px !important;
+    border: 1px solid #777 !important;
+    width: 65% !important;
+    margin: 0 auto;
+    height: 380px;
+    background: var(--green_color) !important;
+}
+
+.memo_input {
+	resize: none;
+	box-sizing: border-box;
+	padding: 10.5px 20px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	margin-bottom: 20px;
+	width: 95%;
+	height: 240px;
+	margin: 0 10px;
+	background: var(--green_color) !important;
+}
+
+.memo_input:focus {
+	outline: 0;
+}
+
+.memo_title_input {
+	height: 40px;
+	font-size: 20px;
+	line-height: 40px;
+	border-radius: 0;
+	border: 0;
+	width: 540px;
+	margin-left: 20px;
+	background: var(--green_color) !important;
+}
+
+.memo_title_input:focus {
+	outline: 0;
+}
+
+.memo_register-modal-title {
+	font-size: 16px;
+	font-weight: 700;
+	color: #333;
+}
