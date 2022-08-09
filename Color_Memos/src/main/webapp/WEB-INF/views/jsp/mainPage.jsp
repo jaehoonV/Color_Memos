@@ -33,18 +33,18 @@
 	<div class="modal fade" id="memo_register">
 		<div class="modal-dialog modal-dialog-centered memo_register-modal">
 			<div class="modal-content memo_register-modal-content">
-				<form action="/memo_regist" method="post" id="memo_register_form">
+				<form action="/memoRegist" method="post" id="memo_register_form">
 				<!-- Modal Header -->
 				<div class="modal-header memo_header">
 					<!-- Memo name input-->
-					<input class="memo_title_input" id="mname" type="text" name="mname" placeholder="메모 제목을 입력하세요" />
+					<input class="memo_title_input" id="mname" type="text" name="mName" placeholder="메모 제목을 입력하세요" />
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<!-- Modal body -->
 				<div class="modal-body">
 						<!-- Memo  input-->
 						<div class="form-project">
-							<textarea class="memo_input" id="memo_text" name="memo_text" placeholder="메모"></textarea>
+							<textarea class="memo_input" id="memo_text" name="mDescription" placeholder="메모"></textarea>
 						</div>
 						<!-- Memo Submit Button-->
 						<button class="memo_submit" id="submitButton" type="submit">만들기</button>

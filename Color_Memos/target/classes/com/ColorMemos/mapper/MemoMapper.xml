@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ColorMemos.mapper.MemoMapper">
+
+	<!-- 메모 생성 -->
+	<insert id="memoRegister">
+		INSERT INTO MEMO 
+		VALUES(	MEMO_SEQ.NEXTVAL
+				,#{mName}
+				,#{mDescription}
+				,sysdate
+				,#{regID} 
+				,#{mColor}
+				)
+
+		<!-- project_seq 값 pno에 저장 -->
+		<!-- <selectKey keyProperty="pno" resultType="int" order="AFTER">
+			SELECT
+			project_seq.CURRVAL FROM DUAL
+		</selectKey> -->
+	</insert>
+	
+</mapper>
