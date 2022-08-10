@@ -12,5 +12,8 @@ public interface MemberMapper {
 	
 	// 로그인
 	public int login(String email, String password) throws Exception;
+	
+	// 회원 정보
+	public MemberDTO MemberInfo(String email) throws Exception;
 
 }

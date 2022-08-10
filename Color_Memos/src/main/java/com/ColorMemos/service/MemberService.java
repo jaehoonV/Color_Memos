@@ -12,5 +12,7 @@ public interface MemberService {
 	
 	// 로그인
 	public boolean login(String email, String password) throws Exception;
-
+	
+	// 회원 정보
+	public MemberDTO MemberInfo(String email) throws Exception;
 }

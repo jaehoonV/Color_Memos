@@ -36,5 +36,11 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return false;
 	}
+	
+	// 회원 정보
+	@Override
+	public MemberDTO MemberInfo(String email) throws Exception {
+		return memberMapper.MemberInfo(email);
+	}
 
 }

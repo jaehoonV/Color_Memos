@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ColorMemos.domain.MemberDTO;
 import com.ColorMemos.service.MemberService;
+import com.ColorMemos.service.MemoService;
 
 import lombok.AllArgsConstructor;
 
@@ -23,6 +24,9 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	MemoService memoService;
 
 	// 이메일 중복 체크
 	@RequestMapping(value = "/userEmailChk", method = RequestMethod.POST)
@@ -76,10 +80,14 @@ public class MemberController {
 		// email 세션 가져옴
 		String email = (String) session.getAttribute("email");
 
+		// memoList
+		model.addAttribute("memoList", memoService.memoList(email));
+
 		// 회원 로그인 정보 가져옴
-		/* memberDTO = memberService.MemberInfo(email); */
+		memberDTO = memberService.MemberInfo(email);
+
 		// 모델에 회원 정보 set
-		/* model.addAttribute("memberInfo", memberDTO); */
+		model.addAttribute("memberInfo", memberDTO);
 
 		return "jsp/mainPage";
 	}

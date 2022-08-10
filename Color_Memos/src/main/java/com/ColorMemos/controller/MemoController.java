@@ -18,35 +18,34 @@ import lombok.AllArgsConstructor;
 @Controller
 @AllArgsConstructor
 public class MemoController {
-	
+
 	@Autowired
 	MemoService memoService;
-	
-	// project 생성
-		@RequestMapping(value = "/memoRegist", method = RequestMethod.POST)
-		public String makeProject(MemoDTO memoDTO, HttpServletRequest request, RedirectAttributes rttr)
-				throws Exception {
-			System.out.println("mName >>>>> " + memoDTO.getMName());
-			System.out.println("mDescription >>>>> " + memoDTO.getMDescription());
 
-			// 세션 생성
-			HttpSession session = request.getSession();
+	// memo 생성
+	@RequestMapping(value = "/memoRegist", method = RequestMethod.POST)
+	public String makeProject(MemoDTO memoDTO, HttpServletRequest request, RedirectAttributes rttr) throws Exception {
+		System.out.println("mname >>>>> " + memoDTO.getMname());
+		System.out.println("mdescription >>>>> " + memoDTO.getMdescription());
 
-			// memberInfo 세션 가져와서 memberDTO에 저장
-			String email = (String) session.getAttribute("email");
+		// 세션 생성
+		HttpSession session = request.getSession();
 
-			// memberDTO에서 이메일 가져오기
-			memoDTO.setRegID(email);
-			if(memoDTO.getMColor() == null) {
-				memoDTO.setMColor("Default");
-			}
+		// memberInfo 세션 가져와서 memberDTO에 저장
+		String email = (String) session.getAttribute("email");
 
-			// 프로젝트 생성, 프로젝트 회원 등록
-			memoService.memoRegister(memoDTO);
-
-			rttr.addFlashAttribute("makeMemoResult", "success");
-
-			return "jsp/mainPage";
+		// memberDTO에서 이메일 가져오기
+		memoDTO.setRegid(email);
+		if (memoDTO.getMcolor() == null) {
+			memoDTO.setMcolor("Default");
 		}
+
+		// 프로젝트 생성, 프로젝트 회원 등록
+		memoService.memoRegister(memoDTO);
+
+		rttr.addFlashAttribute("makeMemoResult", "success");
+
+		return "jsp/mainPage";
+	}
 
 }
