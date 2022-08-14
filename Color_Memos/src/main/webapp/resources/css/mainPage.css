@@ -104,3 +104,22 @@ body {
 	font-weight: 700;
 	color: #333;
 }
+
+#memo_register_message{
+	position: absolute;
+	padding: 5px;
+	width: 175px;
+	border: 1px solid #6449fc;
+	border-radius: 20px;
+	background-color: #6449fc;
+	z-index: 2000;
+	overflow: auto;
+	top: 15%;
+	left: 45%;
+	color: white;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 14px;
+	font-weight: bold;
+}
