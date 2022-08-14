@@ -80,8 +80,9 @@ public class MemberController {
 		// email 세션 가져옴
 		String email = (String) session.getAttribute("email");
 
-		// memoList
-		model.addAttribute("memoList", memoService.memoList(email));
+		/*
+		 * // memoList model.addAttribute("memoList", memoService.memoList(email));
+		 */
 
 		// 회원 로그인 정보 가져옴
 		memberDTO = memberService.MemberInfo(email);

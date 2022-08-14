@@ -27,7 +27,7 @@
 	<!-- Button to Open the Modal -->
 	<button type="button" class="green_class" data-toggle="modal" data-target="#memo_register" id="popup_memo_register">메모 추가</button>
 	
-	<div>
+	<%-- <div>
 		<c:forEach var="memo" items="${memoList}">
 			<div>
 				<p>메모제목 : <c:out value="${memo.mname}" /></p>
@@ -37,6 +37,10 @@
 			</div>
 			<br>
 		</c:forEach>
+	</div> --%>
+	
+	<div id="memo_list">
+		
 	</div>
 	
 	<div id="memo_register_message" style="opacity: 0;">
@@ -46,7 +50,7 @@
 	<div class="modal fade" id="memo_register">
 		<div class="modal-dialog modal-dialog-centered memo_register-modal">
 			<div class="modal-content memo_register-modal-content">
-				<form id="memo_register_form">
+				<!-- <form id="memo_register_form"> -->
 				<!-- Modal Header -->
 				<div class="modal-header memo_header">
 					<!-- Memo name input-->
@@ -56,14 +60,14 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 						<!-- Memo  input-->
-						<div class="form-project">
+						<div class="memo_text_form">
 							<textarea class="memo_input" id="memo_text" name="mdescription" placeholder="메모"></textarea>
 						</div>
 						<!-- Memo Submit Button-->
-						<button class="memo_submit" id="submitButton">만들기</button>
+						<button class="memo_submit">만들기</button>
 					<!-- /memo_regist closed-->
 				</div>
-				</form>
+				<!-- </form> -->
 			</div>
 		</div>
 	</div>
