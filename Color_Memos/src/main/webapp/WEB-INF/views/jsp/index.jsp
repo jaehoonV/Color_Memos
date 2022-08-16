@@ -49,12 +49,22 @@
 				<div class="content">
 					<h2>Login</h2>
 					<form id="loginForm" method="post" action="/login">
-						<div class="form-element form-stack">
+						<div class="inputBox">
+      						<input type="text" required="required" name="email">
+      						<span>ID</span>
+      						<i></i>
+   						</div>
+   						<div class="inputBox">
+      						<input type="password" required="required" name="password">
+      						<span>Password</span>
+      						<i></i>
+   						</div>
+						<!-- <div class="form-element form-stack">
 							<label for="email" class="form-label">ID</label> <input id="email" type="text" name="email">
 						</div>
 						<div class="form-element form-stack">
 							<label for="password" class="form-label">Password</label> <input id="password" type="password" name="password">
-						</div>
+						</div> -->
 						<div class="form-element form-submit">
 							<button id="logIn" class="login" type="submit" name="login">Log In</button>
 							<button id="goRight" class="login off" name="signup">Sign Up</button>
