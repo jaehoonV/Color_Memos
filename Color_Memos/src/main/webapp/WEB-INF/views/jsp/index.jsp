@@ -26,21 +26,30 @@
 				<div class="content">
 					<h2>Sign Up</h2>
 					<form id="joinForm" method="post" action="/join">
-						<div class="form-element form-stack">
-							<label for="username" class="form-label">USER NAME</label> <input id="username" type="text" name="username">
-						</div>
-						<div class="form-element form-stack">
-							<label for="email" class="form-label">ID</label> <input id="email" type="email" name="email">
-						</div>
-						<div class="form-element form-stack">
-							<label for="password" class="form-label">Password</label> <input id="password" type="password" name="password">
-						</div>
-						<div class="form-element form-stack">
-							<label for="re-password" class="form-label">Re-Password</label> <input id="repassword" type="password" name="repassword">
-						</div>
+						<div class="inputBox">
+      						<input type="text" required="required" id="username" name="username">
+      						<span>USER NAME</span>
+      						<i></i>
+   						</div>
+   						<div class="inputBox">
+      						<input type="email" required="required" id="email" name="email">
+      						<span>ID</span>
+      						<i></i>
+   						</div>
+   						<div class="inputBox">
+      						<input type="password" required="required" id="password" name="password">
+      						<span>Password</span>
+      						<i></i>
+   						</div>
+   						<div class="inputBox">
+      						<input type="password" required="required" id="repassword" name="repassword">
+      						<span>Re-Password</span>
+      						<i></i>
+   						</div>
+						
 						<div class="form-element form-submit">
 							<button id="signUp" class="signup" type="submit" name="signup">Sign up</button>
-							<button id="goLeft" class="signup off">Log In</button>
+							<button id="goLeft" class="signup off" type="button">Log In</button>
 						</div>
 					</form>
 				</div>
@@ -59,15 +68,10 @@
       						<span>Password</span>
       						<i></i>
    						</div>
-						<!-- <div class="form-element form-stack">
-							<label for="email" class="form-label">ID</label> <input id="email" type="text" name="email">
-						</div>
-						<div class="form-element form-stack">
-							<label for="password" class="form-label">Password</label> <input id="password" type="password" name="password">
-						</div> -->
+						
 						<div class="form-element form-submit">
 							<button id="logIn" class="login" type="submit" name="login">Log In</button>
-							<button id="goRight" class="login off" name="signup">Sign Up</button>
+							<button id="goRight" class="login off" type="button" name="signup">Sign Up</button>
 						</div>
 					</form>
 				</div>

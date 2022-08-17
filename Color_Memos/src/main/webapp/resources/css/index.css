@@ -6,91 +6,95 @@
 	--bg-color-p700: #3700B3;
 	--bg-color-p200: #BB86FC;
 	}
-	
 
 body {
-  margin: 0;
-  height: 100%;
-  overflow: hidden;
-  width: 100% !important;
-  box-sizing: border-box;
-  font-family: $font-default;
+ 	margin: 0;
+  	height: 100%;
+  	overflow: hidden;
+  	width: 100% !important;
+  	box-sizing: border-box;
 }
 
 .backRight {
-  position: absolute;
-  right: 0;
-  width: 50%;
-  height: 100%;
+  	position: absolute;
+  	right: 0;
+  	width: 50%;
+  	height: 100%;
 }
 
 .backLeft {
-  position: absolute;
-  left: 0;
-  width: 50%;
-  height: 100%;
+  	position: absolute;
+  	left: 0;
+  	width: 50%;
+  	height: 100%;
 }
 
 #back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -999;
+  	width: 100%;
+  	height: 100%;
+  	position: absolute;
+  	z-index: -999;
 }
 
 .canvas-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  background: url(/resources/images/index_color.png);
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+  	z-index: 10;
+  	background: url(/resources/images/index_color.png);
 }
 
 #slideBox {
-  width: 50%;
-  max-height: 100%;
-  height: 100%;
-  overflow: hidden;
-  margin-left: 50%;
-  position: absolute;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  	width: 50%;
+  	max-height: 100%;
+  	height: 100%;
+  	overflow: hidden;
+  	margin-left: 50%;
+  	position: absolute;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .topLayer {
-  width: 200%;
-  height: 100%;
-  position: relative;
-  left: 0;
-  left: -100%;
+  	width: 200%;
+  	height: 100%;
+  	position: relative;
+  	left: 0;
+  	left: -100%;
 }
 
 label {
-  font-size: 0.8em;
-  text-transform: uppercase;
+  	font-size: 0.8em;
+  	text-transform: uppercase;
 }
 
 input {
-  background-color: transparent;
-  border: 0;
-  outline: 0;
-  font-size: 1em;
-  padding: 8px 1px;
-  margin-top: 0.1em;
-  border-bottom: 1px solid black;
+	all: unset;
+  	background-color: transparent;
+  	border: 0;
+  	outline: 0;
+  	font-size: 1em;
+  	padding: 8px 1px;
+  	margin-top: 0.1em;
+  	border-bottom: 1px solid black;
 }
 
 input:focus{
 	box-shadow: 0px 2px rgb(0 0 0/ 15%);
 }
 
+/* input box color */
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0 30px #fff inset ; -webkit-text-fill-color: #000; }
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
+
+
 .left {
   width: 50%;
   height: 100%;
   left: 0;
   position: absolute;
-  background: white;
+  background: aliceblue;
 }
 
 .right {
@@ -98,7 +102,7 @@ input:focus{
   height: 100%;
   right: 0;
   position: absolute;
-  background: white;
+  background: aliceblue;
 }
 
 .content {
@@ -112,7 +116,7 @@ input:focus{
 }
 
 .content h2 {
-  font-weight: 500;
+  font-weight: 800;
   font-size: 2.6em;
   margin: 0.2em 0 0.1em;
   color: var(--bg-color-p500);
@@ -176,7 +180,7 @@ button:focus, button:hover {
    box-shadow: none;
    font-size: 1em;
    letter-spacing: 0.1em;
-   padding: 10px 0 5px;
+   padding: 20px 0 5px;
    font-size: 1.2rem;
 }
 
@@ -234,4 +238,18 @@ button:focus, button:hover {
    100% {
       background-position-x: 250px;
    }
+}
+
+label.error{
+	position: absolute;
+    width: inherit;
+    top: 50px;
+    left: 7px;
+    font-weight: 600;
+    color: crimson;
+}
+
+.form-submit{
+	margin-top: 40px;
+	padding: 10px;
 }
