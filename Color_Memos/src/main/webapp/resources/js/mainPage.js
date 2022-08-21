@@ -1,3 +1,31 @@
+$(document).ready(function(){
+	memoList();
+})
+
+function memoList(){
+	$.ajax({
+		url: "/memoList",
+		type: "POST", 
+		dataType: "json",
+		success : function(data){
+			$.each(data, (index, obj) => {
+				
+            	let tag = 	"<div>" +
+	   	     				"<p>메모제목 :" + obj.mname + "</p>" +
+	   	     				"<p>메모 :" + obj.mdescription + "</p>" +
+	   	     				"<p>작성일 :" + obj.regday + "</p>" +
+	   	     				"<p>메모 색상 :" + obj.mcolor + "</p>" +
+	   	     				"</div>";
+            	
+   	            $("#memo_list").append(tag);
+            })
+		},
+		error :function(){
+			alert("request error!");
+			}
+	}); 
+}
+
 /* 메모 작성 */
 $(function () {
     $('.memo_submit').on('click',function () {
@@ -17,40 +45,25 @@ $(function () {
     	        	$('#memo_register_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
     	        	$('#memo_register_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
     	        	setTimeout(function() {
-		            	location.reload();
-		            }, 1300);
+    	        		$('#memo_register').modal('hide');
+    	        		$("#memo_list *").remove();
+    	        		memoList();
+		            }, 1500);
     	        }
     	    }
     	});
     });
 }); 
 
-
-$(document).ready(function(){
-	memoList();
+$('#memo_register').on('hidden.bs.modal', function (e) {
+	// 모달 종료 시,
+	document.forms['memo_register_form'].reset(); // 폼의 전체 값 초기화 처리
 })
 
-function memoList(){
-	$.ajax({
-		url: "/memoList",
-		type: "POST", 
-		dataType: "json",
-		success : function(data){
-			$.each(data, (index, obj) => {
-            	let tag = 	"<div>" +
-	   	     				"<p>메모제목 :" + obj.mname + "</p>" +
-	   	     				"<p>메모 :" + obj.mdescription + "</p>" +
-	   	     				"<p>작성일 :" + obj.regday + "</p>" +
-	   	     				"<p>메모 색상 :" + obj.mcolor + "</p>" +
-	   	     				"</div>";
-   	            $("#memo_list").append(tag);
-            })
-		},
-		error :function(){
-			alert("request error!");
-			}
-	}); 
-}
+
+
+
+
 
 
 
