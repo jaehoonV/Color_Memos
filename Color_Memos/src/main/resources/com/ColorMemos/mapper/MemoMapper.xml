@@ -14,13 +14,17 @@
 				,sysdate
 				,#{regid} 
 				,#{mcolor}
+				,0
+				,0
+				,0
 				)
 	</insert>
 	
 	<!-- 메모 리스트 -->
 	<select id="memoList" resultType="com.ColorMemos.domain.MemoDTO">
-		SELECT 	
-			MNAME
+		SELECT
+			MNO 	
+			,MNAME
 			,MDESCRIPTION
 			,TO_CHAR(REGDAY,'YY/MM/DD')REGDAY
 			,REGID

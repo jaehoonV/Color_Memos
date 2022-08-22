@@ -11,6 +11,11 @@ body {
 	background: var(--bg_color) !important;
 }
 
+p{
+	margin: 0.5rem;
+	display: table;
+}
+
 .green_class {
 	background: var(--green_color);
 }
@@ -122,4 +127,15 @@ body {
 	vertical-align: middle;
 	font-size: 14px;
 	font-weight: bold;
+}
+
+.memo_div{
+	border-radius: 10px;
+	border: 1px solid black;
+	display: inline-block;
+	padding: 0.5rem;
+    margin: 0.5rem;
+    transition: 0.5s ease-in-out;
+    width: 15rem;
+    height: 17rem;
 }

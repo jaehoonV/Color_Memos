@@ -182,6 +182,7 @@ button:focus, button:hover {
    letter-spacing: 0.1em;
    padding: 20px 0 5px;
    font-size: 1.2rem;
+   font-weight: 600;
 }
 
 .inputBox span {

@@ -16,28 +16,15 @@
 <script src="https://kit.fontawesome.com/f1b7ad5b17.js" crossorigin="anonymous"></script>
 <!-- 부트스트랩 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<!-- Jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div>HI, This page is MainPage.</div>
 	
 	<!-- Button to Open the Modal -->
 	<button type="button" class="green_class" data-toggle="modal" data-target="#memo_register" id="popup_memo_register">메모 추가</button>
-	
-	<%-- <div>
-		<c:forEach var="memo" items="${memoList}">
-			<div>
-				<p>메모제목 : <c:out value="${memo.mname}" /></p>
-				<p>메모 : <c:out value="${memo.mdescription}" /></p>
-				<p>작성일 : <c:out value="${memo.regday}" /></p>
-				<p>메모 색상 : <c:out value="${memo.mcolor}" /></p>
-			</div>
-			<br>
-		</c:forEach>
-	</div> --%>
 	
 	<div id="memo_list">
 		
