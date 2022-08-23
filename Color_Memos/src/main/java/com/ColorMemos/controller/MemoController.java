@@ -31,21 +31,23 @@ public class MemoController {
 
 	// memo 생성
 	@RequestMapping(value = "/memoRegist", method = RequestMethod.POST)
-	public void makeProject(MemoDTO memoDTO, @RequestParam("mname") String mname, @RequestParam("memo_text") String memo_text, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void makeProject(MemoDTO memoDTO, @RequestParam("mname") String mname,
+			@RequestParam("memo_text") String memo_text, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		System.out.println("mname >>>>> " + mname);
 		System.out.println("mdescription >>>>> " + memo_text);
-		
+
 		// 세션 생성
 		HttpSession session = request.getSession();
 
 		// 세션 가져와서 memoDTO에 저장
 		String email = (String) session.getAttribute("email");
 		memoDTO.setRegid(email);
-		
+
 		// 메모
 		memoDTO.setMname(mname);
 		memoDTO.setMdescription(memo_text);
-		
+
 		// 메모 색상
 		if (memoDTO.getMcolor() == null) {
 			memoDTO.setMcolor("Default");
@@ -56,12 +58,12 @@ public class MemoController {
 
 		response.getWriter().print(true);
 	}
-	
+
 	@RequestMapping(value = "/memoList", method = RequestMethod.POST)
 	@ResponseBody
 	public List<MemoDTO> projectMain(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
-		List<MemoDTO> memolist= new ArrayList<>();
-		
+		List<MemoDTO> memolist = new ArrayList<>();
+
 		// 세션 생성
 		HttpSession session = request.getSession();
 
@@ -70,10 +72,21 @@ public class MemoController {
 
 		// memoList
 		memolist.addAll(memoService.memoList(email));
-		
+
 		System.out.println(memolist);
 
 		return memolist;
+	}
+
+	// memo 삭제
+	@RequestMapping(value = "/memoDelete", method = RequestMethod.POST)
+	public void makeProject(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
+		System.out.println("mno >>>>> " + mno);
+
+		// 메모 삭제
+		memoService.memoDelete(mno);
+
+		response.getWriter().print(true);
 	}
 
 }

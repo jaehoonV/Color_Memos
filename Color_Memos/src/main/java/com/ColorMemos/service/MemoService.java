@@ -12,4 +12,6 @@ public interface MemoService {
 	// 메모 리스트
 	public List<MemoDTO> memoList(String email) throws Exception;
 
+	public void memoDelete(String mno) throws Exception;
+
 }

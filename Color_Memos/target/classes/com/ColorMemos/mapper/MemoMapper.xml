@@ -34,4 +34,10 @@
 		ORDER BY MNO DESC
 	</select>
 	
+	<!-- 메모 삭제 -->
+	<delete id="memoDelete">
+		DELETE FROM MEMO
+		WHERE MNO = #{mno}
+	</delete>
+	
 </mapper>

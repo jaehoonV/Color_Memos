@@ -11,6 +11,9 @@ public interface MemoMapper {
 	
 	// 메모 리스트
 	public List<MemoDTO> memoList(String email) throws Exception;
+	
+	// 메모 삭제
+	public void memoDelete(String mno) throws Exception;
 
 
 }
