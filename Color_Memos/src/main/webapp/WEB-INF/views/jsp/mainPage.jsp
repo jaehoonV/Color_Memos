@@ -34,6 +34,10 @@
 		<span>메모가 추가되었습니다.</span>
 	</div>
 	
+	<div id="memo_delete_message" style="opacity: 0;">
+		<span>메모가 삭제되었습니다.</span>
+	</div>
+	
 	<div class="modal fade" id="memo_register">
 		<div class="modal-dialog modal-dialog-centered memo_register-modal">
 			<div class="modal-content memo_register-modal-content">

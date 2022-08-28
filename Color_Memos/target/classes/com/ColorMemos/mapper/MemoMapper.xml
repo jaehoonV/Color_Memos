@@ -29,6 +29,9 @@
 			,TO_CHAR(REGDAY,'YY/MM/DD')REGDAY
 			,REGID
 			,MCOLOR
+			,HIDE_GB
+            ,FAVORITE_GB
+            ,DELETE_GB
 		FROM MEMO
 		where REGID = #{email} 
 		ORDER BY MNO DESC

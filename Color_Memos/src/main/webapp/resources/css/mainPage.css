@@ -12,7 +12,8 @@ body {
 }
 
 p{
-	margin: 0.5rem;
+	all: unset;
+	margin: 0.5rem !important;
 	display: table;
 }
 
@@ -110,7 +111,7 @@ p{
 	color: #333;
 }
 
-#memo_register_message{
+#memo_register_message, #memo_delete_message{
 	position: absolute;
 	padding: 5px;
 	width: 175px;
