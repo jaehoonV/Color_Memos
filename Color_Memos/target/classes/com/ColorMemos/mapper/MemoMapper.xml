@@ -33,13 +33,30 @@
             ,FAVORITE_GB
             ,DELETE_GB
 		FROM MEMO
-		where REGID = #{email} 
+		WHERE REGID = #{email} AND DELETE_GB = 0
+		ORDER BY MNO DESC
+	</select>
+	
+	<!-- 삭제된 메모 리스트 -->
+	<select id="delt_memoList" resultType="com.ColorMemos.domain.MemoDTO">
+		SELECT
+			MNO 	
+			,MNAME
+			,MDESCRIPTION
+			,TO_CHAR(REGDAY,'YY/MM/DD')REGDAY
+			,REGID
+			,MCOLOR
+			,HIDE_GB
+            ,FAVORITE_GB
+            ,DELETE_GB
+		FROM MEMO
+		WHERE REGID = #{email} AND DELETE_GB = 1
 		ORDER BY MNO DESC
 	</select>
 	
 	<!-- 메모 삭제 -->
 	<delete id="memoDelete">
-		DELETE FROM MEMO
+		UPDATE MEMO SET DELETE_GB = 1
 		WHERE MNO = #{mno}
 	</delete>
 	

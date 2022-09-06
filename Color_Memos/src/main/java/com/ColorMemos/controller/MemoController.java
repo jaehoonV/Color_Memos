@@ -61,7 +61,9 @@ public class MemoController {
 
 	@RequestMapping(value = "/memoList", method = RequestMethod.POST)
 	@ResponseBody
-	public List<MemoDTO> projectMain(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
+	public List<MemoDTO> memoList(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
+		System.out.println("memo list!!");
+		
 		List<MemoDTO> memolist = new ArrayList<>();
 
 		// 세션 생성
@@ -73,9 +75,26 @@ public class MemoController {
 		// memoList
 		memolist.addAll(memoService.memoList(email));
 
-		System.out.println(memolist);
-
 		return memolist;
+	}
+	
+	@RequestMapping(value = "/delt_memoList", method = RequestMethod.POST)
+	@ResponseBody
+	public List<MemoDTO> delt_memoList(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
+		System.out.println("delete memo list!!");
+		
+		List<MemoDTO> delt_memolist = new ArrayList<>();
+
+		// 세션 생성
+		HttpSession session = request.getSession();
+
+		// email 세션 가져옴
+		String email = (String) session.getAttribute("email");
+
+		// memoList
+		delt_memolist.addAll(memoService.delt_memoList(email));
+		
+		return delt_memolist;
 	}
 
 	// memo 삭제

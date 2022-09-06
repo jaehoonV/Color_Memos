@@ -34,5 +34,11 @@ public class MemoServiceImpl implements MemoService{
 		memoMapper.memoDelete(mno);
 		
 	}
+	
+	// 삭제된 메모 리스트
+	@Override
+	public List<MemoDTO> delt_memoList(String email) throws Exception {
+		return memoMapper.delt_memoList(email);
+	}
 
 }

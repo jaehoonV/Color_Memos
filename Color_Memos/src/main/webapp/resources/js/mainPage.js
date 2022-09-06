@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	memoList();
-	
+})
+
+$(document).ready(function(){
+	delt_memoList();
 })
 
 function memoList(){
@@ -23,6 +26,34 @@ function memoList(){
 	   	     				"</div>";
             	
    	            $("#memo_list").append(tag);
+            })
+		},
+		error :function(){
+			alert("request error!");
+			}
+	}); 
+}
+
+function delt_memoList(){
+	$.ajax({
+		url: "/delt_memoList",
+		type: "POST", 
+		dataType: "json",
+		success : function(data){
+			$.each(data, (index, obj) => {
+				
+            	let tag = 	"<div class = 'memo_div'>" +
+            				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
+	   	     				"<p>Title :" + obj.mname + "</p>" +
+	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
+	   	     				"<p>Day :" + obj.regday + "</p>" +
+	   	     				"<p>Color :" + obj.mcolor + "</p>" +
+	   	     				"<p>Hide_gb :" + obj.hide_gb + "</p>" +
+	   	     				"<p>Favorite_gb :" + obj.favorite_gb + "</p>" +
+	   	     				"<p>Delete_gb :" + obj.delete_gb + "</p>" +
+	   	     				"</div>";
+            	
+   	            $("#delt_memo_list").append(tag);
             })
 		},
 		error :function(){
@@ -85,7 +116,9 @@ $(document).on("click", ".memo_close", function(){
 	        	$('#memo_delete_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
 	        	setTimeout(function() {
 	            	$("#memo_list *").remove();
+	            	$("#delt_memo_list *").remove();
 	        		memoList();
+	        		delt_memoList();
 	            }, 1500);
 		    }
 		}

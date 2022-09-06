@@ -14,6 +14,9 @@ public interface MemoMapper {
 	
 	// 메모 삭제
 	public void memoDelete(String mno) throws Exception;
+	
+	// 삭제된 메모 리스트
+	public List<MemoDTO> delt_memoList(String email) throws Exception;
 
 
 }

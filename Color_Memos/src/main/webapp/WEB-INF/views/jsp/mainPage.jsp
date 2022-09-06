@@ -30,6 +30,11 @@
 		
 	</div>
 	
+	<span>Delete Memo List</span>
+	<div id="delt_memo_list">
+		
+	</div>
+	
 	<div id="memo_register_message" style="opacity: 0;">
 		<span>메모가 추가되었습니다.</span>
 	</div>
