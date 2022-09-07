@@ -16,14 +16,17 @@ function memoList(){
 				
             	let tag = 	"<div class = 'memo_div'>" +
             				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
-	   	     				"<p>Title :" + obj.mname + "</p>" +
+	   	     				"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
+	   	     				"<div class = 'memo_content'>" +
 	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
 	   	     				"<p>Day :" + obj.regday + "</p>" +
 	   	     				"<p>Color :" + obj.mcolor + "</p>" +
 	   	     				"<p>Hide_gb :" + obj.hide_gb + "</p>" +
 	   	     				"<p>Favorite_gb :" + obj.favorite_gb + "</p>" +
 	   	     				"<p>Delete_gb :" + obj.delete_gb + "</p>" +
-	   	     				"</div>";
+	   	     				"<p>Delt_date :" + obj.delt_date + "</p>" +
+	   	     				"<p>Restore_date :" + obj.restore_date + "</p>" +
+	   	     				"</div></div>";
             	
    	            $("#memo_list").append(tag);
             })
@@ -44,14 +47,17 @@ function delt_memoList(){
 				
             	let tag = 	"<div class = 'memo_div'>" +
             				"<button type='button' class='close memo_restore' value='" + obj.mno  + "'>복구</button>" +
-	   	     				"<p>Title :" + obj.mname + "</p>" +
+	   	     				"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
+	   	     				"<div class = 'memo_content'>" +
 	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
 	   	     				"<p>Day :" + obj.regday + "</p>" +
 	   	     				"<p>Color :" + obj.mcolor + "</p>" +
 	   	     				"<p>Hide_gb :" + obj.hide_gb + "</p>" +
 	   	     				"<p>Favorite_gb :" + obj.favorite_gb + "</p>" +
 	   	     				"<p>Delete_gb :" + obj.delete_gb + "</p>" +
-	   	     				"</div>";
+	   	     				"<p>Delt_date :" + obj.delt_date + "</p>" +
+	   	     				"<p>Restore_date :" + obj.restore_date + "</p>" +
+	   	     				"</div></div>";
             	
    	            $("#delt_memo_list").append(tag);
             })

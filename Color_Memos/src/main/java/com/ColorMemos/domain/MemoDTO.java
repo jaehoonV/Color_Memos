@@ -13,4 +13,6 @@ public class MemoDTO {
 	private String hide_gb; // 숨김 구분
 	private String favorite_gb; // 즐겨찾기 구분
 	private String delete_gb; // 삭제 구분
+	private String delt_date; // 메모 삭제일
+	private String restore_date; // 메모 복구일
 }

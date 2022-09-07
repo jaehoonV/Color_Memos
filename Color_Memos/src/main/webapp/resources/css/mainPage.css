@@ -144,3 +144,35 @@ p{
 .memo_restore{
 	font-size : 0.8rem !important;
 }
+
+.memo_content{
+	overflow-y: auto;
+	height: 13rem;
+}
+
+.memo_content::-webkit-scrollbar, body::-webkit-scrollbar {
+	width: 7px;
+	height: 7px;
+	padding-right: 10px;
+}
+
+.memo_content::-webkit-scrollbar-button, body::-webkit-scrollbar-button {
+	width: 7px;
+	height: 18px;
+}
+
+.memo_content::-webkit-scrollbar-corner, body::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+.memo_content::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+	background: #999;
+	border: 1px solid #999;
+	border-radius: 50px;
+}
+
+.memo_content::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+	background: transparent;
+	border: 0 none transparent;
+	border-radius: 53px;
+}

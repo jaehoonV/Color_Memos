@@ -8,15 +8,19 @@
 	<!-- 메모 생성 -->
 	<insert id="memoRegister">
 		INSERT INTO MEMO 
+			(MNO
+			,MNAME
+			,MDESCRIPTION
+			,REGDAY
+			,REGID
+			,MCOLOR
+			)
 		VALUES(	MEMO_SEQ.NEXTVAL
 				,#{mname}
 				,#{mdescription}
-				,sysdate
+				,SYSDATE
 				,#{regid} 
 				,#{mcolor}
-				,0
-				,0
-				,0
 				)
 	</insert>
 	
@@ -32,6 +36,8 @@
 			,HIDE_GB
             ,FAVORITE_GB
             ,DELETE_GB
+            ,DELT_DATE
+            ,RESTORE_DATE
 		FROM MEMO
 		WHERE REGID = #{email} AND DELETE_GB = 0
 		ORDER BY MNO DESC
@@ -49,6 +55,8 @@
 			,HIDE_GB
             ,FAVORITE_GB
             ,DELETE_GB
+            ,DELT_DATE
+            ,RESTORE_DATE
 		FROM MEMO
 		WHERE REGID = #{email} AND DELETE_GB = 1
 		ORDER BY MNO DESC
@@ -56,13 +64,13 @@
 	
 	<!-- 메모 삭제 -->
 	<delete id="memoDelete">
-		UPDATE MEMO SET DELETE_GB = 1
+		UPDATE MEMO SET DELETE_GB = 1, DELT_DATE = SYSDATE
 		WHERE MNO = #{mno}
 	</delete>
 	
 	<!-- 메모 복구 -->
 	<delete id="memoRestore">
-		UPDATE MEMO SET DELETE_GB = 0
+		UPDATE MEMO SET DELETE_GB = 0, RESTORE_DATE = SYSDATE
 		WHERE MNO = #{mno}
 	</delete>
 	
