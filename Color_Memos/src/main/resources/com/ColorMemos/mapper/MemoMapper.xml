@@ -60,4 +60,10 @@
 		WHERE MNO = #{mno}
 	</delete>
 	
+	<!-- 메모 복구 -->
+	<delete id="memoRestore">
+		UPDATE MEMO SET DELETE_GB = 0
+		WHERE MNO = #{mno}
+	</delete>
+	
 </mapper>

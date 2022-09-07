@@ -43,7 +43,7 @@ function delt_memoList(){
 			$.each(data, (index, obj) => {
 				
             	let tag = 	"<div class = 'memo_div'>" +
-            				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
+            				"<button type='button' class='close memo_restore' value='" + obj.mno  + "'>복구</button>" +
 	   	     				"<p>Title :" + obj.mname + "</p>" +
 	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
 	   	     				"<p>Day :" + obj.regday + "</p>" +
@@ -114,6 +114,32 @@ $(document).on("click", ".memo_close", function(){
 	        if(data == true){
 	        	$('#memo_delete_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
 	        	$('#memo_delete_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+	        	setTimeout(function() {
+	            	$("#memo_list *").remove();
+	            	$("#delt_memo_list *").remove();
+	        		memoList();
+	        		delt_memoList();
+	            }, 1500);
+		    }
+		}
+	});
+}); 
+
+//메모 복구
+$(document).on("click", ".memo_restore", function(){
+	
+	let data = $(this).val();
+	
+	$.ajax({
+		type: "POST",
+		url: "/memoRestore",  
+		dataType: "json",
+	    data: "mno=" + data,
+	    async: false,
+	    success: function (data) {
+	        if(data == true){
+	        	$('#memo_restore_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
+	        	$('#memo_restore_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
 	        	setTimeout(function() {
 	            	$("#memo_list *").remove();
 	            	$("#delt_memo_list *").remove();

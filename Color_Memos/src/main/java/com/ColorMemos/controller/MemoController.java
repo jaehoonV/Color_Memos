@@ -63,7 +63,7 @@ public class MemoController {
 	@ResponseBody
 	public List<MemoDTO> memoList(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
 		System.out.println("memo list!!");
-		
+
 		List<MemoDTO> memolist = new ArrayList<>();
 
 		// 세션 생성
@@ -77,12 +77,12 @@ public class MemoController {
 
 		return memolist;
 	}
-	
+
 	@RequestMapping(value = "/delt_memoList", method = RequestMethod.POST)
 	@ResponseBody
 	public List<MemoDTO> delt_memoList(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
 		System.out.println("delete memo list!!");
-		
+
 		List<MemoDTO> delt_memolist = new ArrayList<>();
 
 		// 세션 생성
@@ -93,17 +93,26 @@ public class MemoController {
 
 		// memoList
 		delt_memolist.addAll(memoService.delt_memoList(email));
-		
+
 		return delt_memolist;
 	}
 
 	// memo 삭제
 	@RequestMapping(value = "/memoDelete", method = RequestMethod.POST)
-	public void makeProject(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
+	public void makeDelete(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
 		System.out.println("mno >>>>> " + mno);
-
 		// 메모 삭제
 		memoService.memoDelete(mno);
+
+		response.getWriter().print(true);
+	}
+
+	// memo 복구
+	@RequestMapping(value = "/memoRestore", method = RequestMethod.POST)
+	public void memoRestore(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
+		System.out.println("mno >>>>> " + mno);
+		// 메모 복구
+		memoService.memoRestore(mno);
 
 		response.getWriter().print(true);
 	}

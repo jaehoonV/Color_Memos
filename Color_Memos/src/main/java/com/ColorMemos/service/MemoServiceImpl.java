@@ -32,13 +32,18 @@ public class MemoServiceImpl implements MemoService{
 	@Override
 	public void memoDelete(String mno) throws Exception {
 		memoMapper.memoDelete(mno);
-		
 	}
 	
 	// 삭제된 메모 리스트
 	@Override
 	public List<MemoDTO> delt_memoList(String email) throws Exception {
 		return memoMapper.delt_memoList(email);
+	}
+	
+	// 메모 복구
+	@Override
+	public void memoRestore(String mno) throws Exception {
+		memoMapper.memoRestore(mno);
 	}
 
 }

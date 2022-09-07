@@ -46,15 +46,18 @@
 		<servlet-name>appServlet</servlet-name>
 	</filter-mapping>
 	
-	<!-- 로그인 여부를 체크하는 필터  -->
-	<!-- <filter>
+	<!-- 로그인 체크 필터  -->
+	<filter>
 		<filter-name>LoginCheckFilter</filter-name>
-		<filter-class>org.ProjectHub.filter.LoginCheckFilter</filter-class>
+		<filter-class>com.ColorMemos.filter.LoginCheckFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginCheckFilter</filter-name>
 		<url-pattern>/mainPage</url-pattern>
-		<url-pattern>/projectHomePage</url-pattern>
-	</filter-mapping> -->
+		<url-pattern>/memoRegist</url-pattern>
+		<url-pattern>/memoList</url-pattern>
+		<url-pattern>/delt_memoList</url-pattern>
+		<url-pattern>/memoDelete</url-pattern>
+	</filter-mapping>
 
 </web-app>

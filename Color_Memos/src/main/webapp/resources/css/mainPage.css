@@ -111,7 +111,7 @@ p{
 	color: #333;
 }
 
-#memo_register_message, #memo_delete_message{
+#memo_register_message, #memo_delete_message, #memo_restore_message{
 	position: absolute;
 	padding: 5px;
 	width: 175px;
@@ -139,4 +139,8 @@ p{
     transition: 0.5s ease-in-out;
     width: 15rem;
     height: 17rem;
+}
+
+.memo_restore{
+	font-size : 0.8rem !important;
 }

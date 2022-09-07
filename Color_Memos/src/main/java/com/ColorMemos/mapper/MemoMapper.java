@@ -17,6 +17,9 @@ public interface MemoMapper {
 	
 	// 삭제된 메모 리스트
 	public List<MemoDTO> delt_memoList(String email) throws Exception;
+	
+	// 메모 복구
+	public void memoRestore(String mno) throws Exception;
 
 
 }
