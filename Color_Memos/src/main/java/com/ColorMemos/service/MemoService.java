@@ -20,5 +20,8 @@ public interface MemoService {
 	
 	// 메모 복구
 	public void memoRestore(String mno) throws Exception;
+	
+	// 메모 숨김
+	public void memoHide(String mno) throws Exception;
 
 }

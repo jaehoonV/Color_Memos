@@ -63,15 +63,35 @@
 	</select>
 	
 	<!-- 메모 삭제 -->
-	<delete id="memoDelete">
+	<update id="memoDelete">
 		UPDATE MEMO SET DELETE_GB = 1, DELT_DATE = SYSDATE
 		WHERE MNO = #{mno}
-	</delete>
+	</update>
 	
 	<!-- 메모 복구 -->
-	<delete id="memoRestore">
+	<update id="memoRestore">
 		UPDATE MEMO SET DELETE_GB = 0, RESTORE_DATE = SYSDATE
 		WHERE MNO = #{mno}
-	</delete>
+	</update>
+	
+	<select id="memoHideSearch">
+		SELECT
+			MNO 	
+			,HIDE_GB
+		FROM MEMO
+		WHERE MNO = #{mno}
+	</select>
+	
+	<!-- 메모 숨김 -->
+	<update id="memoHide">
+		UPDATE MEMO SET HIDE_GB = 1
+		WHERE MNO = #{mno}
+	</update>
+	
+	<!-- 메모 숨김 해제 -->
+	<update id="memoHideCancel">
+		UPDATE MEMO SET HIDE_GB = 0
+		WHERE MNO = #{mno}
+	</update>
 	
 </mapper>

@@ -117,4 +117,14 @@ public class MemoController {
 		response.getWriter().print(true);
 	}
 
+	// memo 숨김
+	@RequestMapping(value = "/memoHide", method = RequestMethod.POST)
+	public void memoHide(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
+		System.out.println("mno >>>>> " + mno);
+		// 메모 숨김
+		memoService.memoHide(mno);
+
+		response.getWriter().print(true);
+	}
+
 }

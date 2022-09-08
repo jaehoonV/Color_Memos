@@ -15,6 +15,7 @@ function memoList(){
 			$.each(data, (index, obj) => {
 				
             	let tag = 	"<div class = 'memo_div'>" +
+            				"<button type='button' class='memo_hide' value='" + obj.mno  + "'>hide</button>" +
             				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
 	   	     				"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
 	   	     				"<div class = 'memo_content'>" +
@@ -157,7 +158,31 @@ $(document).on("click", ".memo_restore", function(){
 	});
 }); 
 
-
+//메모 숨김
+$(document).on("click", ".memo_hide", function(){
+	
+	let data = $(this).val();
+	
+	$.ajax({
+		type: "POST",
+		url: "/memoHide",  
+		dataType: "json",
+	    data: "mno=" + data,
+	    async: false,
+	    success: function (data) {
+	        if(data == true){
+	        	$('#memo_hide_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
+	        	$('#memo_hide_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+	        	setTimeout(function() {
+	            	$("#memo_list *").remove();
+	            	$("#delt_memo_list *").remove();
+	        		memoList();
+	        		delt_memoList();
+	            }, 1500);
+		    }
+		}
+	});
+}); 
 
 
 

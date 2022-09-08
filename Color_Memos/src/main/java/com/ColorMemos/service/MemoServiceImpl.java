@@ -45,5 +45,11 @@ public class MemoServiceImpl implements MemoService{
 	public void memoRestore(String mno) throws Exception {
 		memoMapper.memoRestore(mno);
 	}
+	
+	// 메모 숨김
+	@Override
+	public void memoHide(String mno) throws Exception {
+		memoMapper.memoHide(mno);
+	}
 
 }
