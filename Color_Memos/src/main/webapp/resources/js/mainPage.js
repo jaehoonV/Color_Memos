@@ -15,8 +15,8 @@ function memoList(){
 			$.each(data, (index, obj) => {
 				
             	let tag = 	"<div class = 'memo_div'>" +
-            				"<button type='button' class='memo_hide' value='" + obj.mno  + "'>hide</button>" +
             				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
+            				"<button type='button' class='close memo_hide' value='" + obj.mno  + "'>hide</button>" +
 	   	     				"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
 	   	     				"<div class = 'memo_content'>" +
 	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
@@ -171,8 +171,6 @@ $(document).on("click", ".memo_hide", function(){
 	    async: false,
 	    success: function (data) {
 	        if(data == true){
-	        	$('#memo_hide_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
-	        	$('#memo_hide_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
 	        	setTimeout(function() {
 	            	$("#memo_list *").remove();
 	            	$("#delt_memo_list *").remove();

@@ -74,10 +74,9 @@
 		WHERE MNO = #{mno}
 	</update>
 	
-	<select id="memoHideSearch">
-		SELECT
-			MNO 	
-			,HIDE_GB
+	<!-- 메모 숨김 구분값 -->
+	<select id="selectHideGB" resultType="Integer">
+		SELECT HIDE_GB
 		FROM MEMO
 		WHERE MNO = #{mno}
 	</select>
@@ -88,7 +87,7 @@
 		WHERE MNO = #{mno}
 	</update>
 	
-	<!-- 메모 숨김 해제 -->
+	<!-- 메모 숨김 취소 -->
 	<update id="memoHideCancel">
 		UPDATE MEMO SET HIDE_GB = 0
 		WHERE MNO = #{mno}

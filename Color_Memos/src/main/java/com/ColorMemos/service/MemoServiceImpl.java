@@ -51,5 +51,17 @@ public class MemoServiceImpl implements MemoService{
 	public void memoHide(String mno) throws Exception {
 		memoMapper.memoHide(mno);
 	}
+	
+	// 메모 숨김 구분값
+	@Override
+	public int selectHideGB(String mno) throws Exception {
+		return memoMapper.selectHideGB(mno);
+	}
+	
+	// 메모 숨김 취소
+	@Override
+	public void memoHideCancel(String mno) throws Exception {
+		memoMapper.memoHideCancel(mno);
+	}
 
 }

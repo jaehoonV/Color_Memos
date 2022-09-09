@@ -111,8 +111,8 @@ p{
 	color: #333;
 }
 
-#memo_register_message, #memo_delete_message, #memo_restore_message{
-	position: absolute;
+.message_class{
+	position: fixed;
 	padding: 5px;
 	width: 175px;
 	border: 1px solid #6449fc;
@@ -137,17 +137,18 @@ p{
 	padding: 0.5rem;
     margin: 0.5rem;
     transition: 0.5s ease-in-out;
-    width: 15rem;
-    height: 17rem;
+    width: 16rem;
+    height: 19rem;
 }
 
-.memo_restore{
+.memo_restore, .memo_hide{
 	font-size : 0.8rem !important;
+	margin-top: 0.5rem;
 }
 
 .memo_content{
 	overflow-y: auto;
-	height: 13rem;
+	height: 15rem;
 }
 
 .memo_content::-webkit-scrollbar, body::-webkit-scrollbar {

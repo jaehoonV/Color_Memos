@@ -23,6 +23,12 @@ public interface MemoMapper {
 	
 	// 메모 숨김
 	public void memoHide(String mno) throws Exception;
+	
+	// 메모 숨김 구분값
+	public int selectHideGB(String mno) throws Exception;
+	
+	// 메모 숨김 취소
+	public void memoHideCancel(String mno) throws Exception;
 
 
 }

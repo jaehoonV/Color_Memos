@@ -35,20 +35,16 @@
 		
 	</div>
 	
-	<div id="memo_register_message" style="opacity: 0;">
+	<div class="message_class" id="memo_register_message" style="opacity: 0;">
 		<span>메모가 추가되었습니다.</span>
 	</div>
 	
-	<div id="memo_delete_message" style="opacity: 0;">
+	<div class="message_class" id="memo_delete_message" style="opacity: 0;">
 		<span>메모가 삭제되었습니다.</span>
 	</div>
 	
-	<div id="memo_restore_message" style="opacity: 0;">
+	<div class="message_class" id="memo_restore_message" style="opacity: 0;">
 		<span>메모가 복구되었습니다.</span>
-	</div>
-	
-	<div id="memo_hide_message" style="opacity: 0;">
-		<span>메모가 숨겨졌습니다.</span>
 	</div>
 	
 	<div class="modal fade" id="memo_register">

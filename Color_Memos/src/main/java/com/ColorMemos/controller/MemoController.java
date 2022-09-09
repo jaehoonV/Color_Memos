@@ -121,9 +121,15 @@ public class MemoController {
 	@RequestMapping(value = "/memoHide", method = RequestMethod.POST)
 	public void memoHide(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
 		System.out.println("mno >>>>> " + mno);
+		int hide_gb = memoService.selectHideGB(mno);
+		
 		// 메모 숨김
-		memoService.memoHide(mno);
-
+		if(hide_gb == 0) {
+			memoService.memoHide(mno);
+		}else {
+			memoService.memoHideCancel(mno);
+		}
+		
 		response.getWriter().print(true);
 	}
 
