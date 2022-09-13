@@ -63,5 +63,23 @@ public class MemoServiceImpl implements MemoService{
 	public void memoHideCancel(String mno) throws Exception {
 		memoMapper.memoHideCancel(mno);
 	}
+	
+	// 메모 즐겨찾기 구분값
+	@Override
+	public int selectFavGB(String mno) throws Exception {
+		return memoMapper.selectFavGB(mno);
+	}
+	
+	// 메모 즐겨찾기
+	@Override
+	public void memoFav(String mno) throws Exception {
+		memoMapper.memoFav(mno);
+	}
+
+	//메모 즐겨찾기 취소
+	@Override
+	public void memoFavCancel(String mno) throws Exception {
+		memoMapper.memoFavCancel(mno);
+	}
 
 }

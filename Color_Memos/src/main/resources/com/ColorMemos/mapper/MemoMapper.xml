@@ -40,7 +40,7 @@
             ,RESTORE_DATE
 		FROM MEMO
 		WHERE REGID = #{email} AND DELETE_GB = 0
-		ORDER BY MNO DESC
+		ORDER BY FAVORITE_GB DESC, MNO DESC
 	</select>
 	
 	<!-- 삭제된 메모 리스트 -->
@@ -90,6 +90,25 @@
 	<!-- 메모 숨김 취소 -->
 	<update id="memoHideCancel">
 		UPDATE MEMO SET HIDE_GB = 0
+		WHERE MNO = #{mno}
+	</update>
+	
+	<!-- 메모 즐겨찾기 구분값 -->
+	<select id="selectFavGB" resultType="Integer">
+		SELECT FAVORITE_GB 
+		FROM MEMO
+		WHERE MNO = #{mno}
+	</select>
+	
+	<!-- 메모 즐겨찾기 -->
+	<update id="memoFav">
+		UPDATE MEMO SET FAVORITE_GB = 1
+		WHERE MNO = #{mno}
+	</update>
+	
+	<!-- 메모 즐겨찾기 취소 -->
+	<update id="memoFavCancel">
+		UPDATE MEMO SET FAVORITE_GB = 0
 		WHERE MNO = #{mno}
 	</update>
 	

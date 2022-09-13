@@ -16,8 +16,14 @@ function memoList(){
 				
             	let tag = 	"<div class = 'memo_div'>" +
             				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
-            				"<button type='button' class='close memo_hide' value='" + obj.mno  + "'>hide</button>" +
-	   	     				"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
+            				"<button type='button' class='close memo_hide' value='" + obj.mno  + "'>hide</button>";
+            	if(obj.favorite_gb == 1){
+            		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
+            	}else{
+            		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
+            	}
+            	
+	   	     	tag +=		"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
 	   	     				"<div class = 'memo_content'>" +
 	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
 	   	     				"<p>Day :" + obj.regday + "</p>" +
@@ -166,6 +172,30 @@ $(document).on("click", ".memo_hide", function(){
 	$.ajax({
 		type: "POST",
 		url: "/memoHide",  
+		dataType: "json",
+	    data: "mno=" + data,
+	    async: false,
+	    success: function (data) {
+	        if(data == true){
+	        	setTimeout(function() {
+	            	$("#memo_list *").remove();
+	            	$("#delt_memo_list *").remove();
+	        		memoList();
+	        		delt_memoList();
+	            }, 1500);
+		    }
+		}
+	});
+}); 
+
+//메모 즐겨찾기
+$(document).on("click", ".memo_fav", function(){
+	
+	let data = $(this).val();
+	
+	$.ajax({
+		type: "POST",
+		url: "/memoFav",  
 		dataType: "json",
 	    data: "mno=" + data,
 	    async: false,

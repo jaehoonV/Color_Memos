@@ -132,5 +132,21 @@ public class MemoController {
 		
 		response.getWriter().print(true);
 	}
+	
+	// memo 즐겨찾기
+		@RequestMapping(value = "/memoFav", method = RequestMethod.POST)
+		public void memoFav(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
+			System.out.println("mno >>>>> " + mno);
+			int fav_gb = memoService.selectFavGB(mno);
+			
+			// 메모 숨김
+			if(fav_gb == 0) {
+				memoService.memoFav(mno);
+			}else {
+				memoService.memoFavCancel(mno);
+			}
+			
+			response.getWriter().print(true);
+		}
 
 }

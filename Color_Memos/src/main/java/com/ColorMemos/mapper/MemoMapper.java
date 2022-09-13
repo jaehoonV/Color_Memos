@@ -29,6 +29,15 @@ public interface MemoMapper {
 	
 	// 메모 숨김 취소
 	public void memoHideCancel(String mno) throws Exception;
+	
+	// 메모 즐겨찾기 구분값
+	public int selectFavGB(String mno) throws Exception;
+	
+	// 메모 즐겨찾기 
+	public void memoFav(String mno) throws Exception;
+	
+	// 메모 즐겨찾기 취소
+	public void memoFavCancel(String mno) throws Exception;
 
 
 }
