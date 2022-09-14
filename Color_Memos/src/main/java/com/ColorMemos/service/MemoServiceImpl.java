@@ -76,10 +76,16 @@ public class MemoServiceImpl implements MemoService{
 		memoMapper.memoFav(mno);
 	}
 
-	//메모 즐겨찾기 취소
+	// 메모 즐겨찾기 취소
 	@Override
 	public void memoFavCancel(String mno) throws Exception {
 		memoMapper.memoFavCancel(mno);
+	}
+	
+	// 메모 숨김제외 리스트
+	@Override
+	public List<MemoDTO> memoList_h(String email) throws Exception {
+		return memoMapper.memoList_h(email);
 	}
 
 }

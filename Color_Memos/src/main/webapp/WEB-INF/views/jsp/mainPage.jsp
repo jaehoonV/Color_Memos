@@ -26,6 +26,15 @@
 	<!-- Button to Open the Modal -->
 	<button type="button" class="green_class" data-toggle="modal" data-target="#memo_register" id="popup_memo_register">메모 추가</button>
 	
+	<section class="hide_section">
+		<div class="hide_div">
+		<span>hide button</span>
+		<div class="checkbox">
+    		<input type="checkbox" id="hide_check">
+    		<label></label>
+    	</div>
+    </div>
+    </section>
 	<div id="memo_list">
 		
 	</div>

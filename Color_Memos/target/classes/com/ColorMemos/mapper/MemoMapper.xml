@@ -43,6 +43,25 @@
 		ORDER BY FAVORITE_GB DESC, MNO DESC
 	</select>
 	
+	<!-- 메모 숨김제외 리스트 -->
+	<select id="memoList_h" resultType="com.ColorMemos.domain.MemoDTO">
+		SELECT
+			MNO 	
+			,MNAME
+			,MDESCRIPTION
+			,TO_CHAR(REGDAY,'YY/MM/DD')REGDAY
+			,REGID
+			,MCOLOR
+			,HIDE_GB
+            ,FAVORITE_GB
+            ,DELETE_GB
+            ,DELT_DATE
+            ,RESTORE_DATE
+		FROM MEMO
+		WHERE REGID = #{email} AND DELETE_GB = 0 AND HIDE_GB = 0
+		ORDER BY FAVORITE_GB DESC, MNO DESC
+	</select>
+	
 	<!-- 삭제된 메모 리스트 -->
 	<select id="delt_memoList" resultType="com.ColorMemos.domain.MemoDTO">
 		SELECT

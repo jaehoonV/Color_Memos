@@ -77,6 +77,26 @@ public class MemoController {
 
 		return memolist;
 	}
+	
+	// 메모 숨김제외 리스트
+	@RequestMapping(value = "/memoList_h", method = RequestMethod.POST)
+	@ResponseBody
+	public List<MemoDTO> memoList_h(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
+		System.out.println("memo list hide!!");
+
+		List<MemoDTO> memolist = new ArrayList<>();
+
+		// 세션 생성
+		HttpSession session = request.getSession();
+
+		// email 세션 가져옴
+		String email = (String) session.getAttribute("email");
+
+		// memoList
+		memolist.addAll(memoService.memoList_h(email));
+
+		return memolist;
+	}
 
 	@RequestMapping(value = "/delt_memoList", method = RequestMethod.POST)
 	@ResponseBody
@@ -122,31 +142,31 @@ public class MemoController {
 	public void memoHide(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
 		System.out.println("mno >>>>> " + mno);
 		int hide_gb = memoService.selectHideGB(mno);
-		
+
 		// 메모 숨김
-		if(hide_gb == 0) {
+		if (hide_gb == 0) {
 			memoService.memoHide(mno);
-		}else {
+		} else {
 			memoService.memoHideCancel(mno);
 		}
-		
+
 		response.getWriter().print(true);
 	}
-	
+
 	// memo 즐겨찾기
-		@RequestMapping(value = "/memoFav", method = RequestMethod.POST)
-		public void memoFav(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
-			System.out.println("mno >>>>> " + mno);
-			int fav_gb = memoService.selectFavGB(mno);
-			
-			// 메모 숨김
-			if(fav_gb == 0) {
-				memoService.memoFav(mno);
-			}else {
-				memoService.memoFavCancel(mno);
-			}
-			
-			response.getWriter().print(true);
+	@RequestMapping(value = "/memoFav", method = RequestMethod.POST)
+	public void memoFav(@RequestParam("mno") String mno, HttpServletResponse response) throws Exception {
+		System.out.println("mno >>>>> " + mno);
+		int fav_gb = memoService.selectFavGB(mno);
+
+		// 메모 숨김
+		if (fav_gb == 0) {
+			memoService.memoFav(mno);
+		} else {
+			memoService.memoFavCancel(mno);
 		}
+
+		response.getWriter().print(true);
+	}
 
 }

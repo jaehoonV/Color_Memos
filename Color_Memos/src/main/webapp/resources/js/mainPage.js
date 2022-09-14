@@ -15,6 +15,49 @@ function memoList(){
 			$.each(data, (index, obj) => {
 				
             	let tag = 	"<div class = 'memo_div'>" +
+            				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>";
+            	if(obj.hide_gb == 1){
+            		tag += "<button type='button' class='close memo_hide' style='color:blue;' value='" + obj.mno  + "'>hide</button>";
+            	}else{
+            		tag += "<button type='button' class='close memo_hide' value='" + obj.mno  + "'>hide</button>";
+            	}
+            	if(obj.favorite_gb == 1){
+            		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
+            	}else{
+            		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
+            	}
+            	
+	   	     	tag +=		"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
+	   	     				"<div class = 'memo_content'>" +
+	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
+	   	     				"<p>Day :" + obj.regday + "</p>" +
+	   	     				"<p>Color :" + obj.mcolor + "</p>" +
+	   	     				"<p>Hide_gb :" + obj.hide_gb + "</p>" +
+	   	     				"<p>Favorite_gb :" + obj.favorite_gb + "</p>" +
+	   	     				"<p>Delete_gb :" + obj.delete_gb + "</p>" +
+	   	     				"<p>Delt_date :" + obj.delt_date + "</p>" +
+	   	     				"<p>Restore_date :" + obj.restore_date + "</p>" +
+	   	     				"</div></div>";
+            	
+   	            $("#memo_list").append(tag);
+            })
+		},
+		error :function(){
+			alert("request error!");
+			}
+	}); 
+}
+
+// 메모 숨김
+function memoList_h(){
+	$.ajax({
+		url: "/memoList_h",
+		type: "POST", 
+		dataType: "json",
+		success : function(data){
+			$.each(data, (index, obj) => {
+				
+            	let tag = 	"<div class = 'memo_div'>" +
             				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
             				"<button type='button' class='close memo_hide' value='" + obj.mno  + "'>hide</button>";
             	if(obj.favorite_gb == 1){
@@ -78,6 +121,7 @@ function delt_memoList(){
 /* 메모 작성 */
 $(document).ready(function(){
     $('.memo_submit').on('click',function () {
+    	let hide_check = $("#hide_check").prop("checked");
     	let objParams = {
     		"mname" : $('#mname').val(),
     	    "memo_text" : $('#memo_text').val()
@@ -97,7 +141,11 @@ $(document).ready(function(){
     	        		$("#memo_register").modal("hide");
     	        		document.forms['memo_register_form'].reset();
         	        	$("#memo_list *").remove();
-    	        		memoList();
+        	        	if(hide_check){
+    	            		memoList_h();
+    	            	}else{
+    	            		memoList();
+    	            	}
 		            }, 1500);
     	        }
     	    }
@@ -114,7 +162,7 @@ $('#memo_register').on('hidden.bs.modal', function (e) {
 
 // 메모 삭제
 $(document).on("click", ".memo_close", function(){
-	
+	let hide_check = $("#hide_check").prop("checked");
 	let data = $(this).val();
 	
 	$.ajax({
@@ -130,7 +178,11 @@ $(document).on("click", ".memo_close", function(){
 	        	setTimeout(function() {
 	            	$("#memo_list *").remove();
 	            	$("#delt_memo_list *").remove();
-	        		memoList();
+	            	if(hide_check){
+	            		memoList_h();
+	            	}else{
+	            		memoList();
+	            	}
 	        		delt_memoList();
 	            }, 1500);
 		    }
@@ -140,7 +192,7 @@ $(document).on("click", ".memo_close", function(){
 
 //메모 복구
 $(document).on("click", ".memo_restore", function(){
-	
+	let hide_check = $("#hide_check").prop("checked");
 	let data = $(this).val();
 	
 	$.ajax({
@@ -156,7 +208,11 @@ $(document).on("click", ".memo_restore", function(){
 	        	setTimeout(function() {
 	            	$("#memo_list *").remove();
 	            	$("#delt_memo_list *").remove();
-	        		memoList();
+	            	if(hide_check){
+	            		memoList_h();
+	            	}else{
+	            		memoList();
+	            	}
 	        		delt_memoList();
 	            }, 1500);
 		    }
@@ -166,7 +222,7 @@ $(document).on("click", ".memo_restore", function(){
 
 //메모 숨김
 $(document).on("click", ".memo_hide", function(){
-	
+	let hide_check = $("#hide_check").prop("checked");
 	let data = $(this).val();
 	
 	$.ajax({
@@ -180,7 +236,11 @@ $(document).on("click", ".memo_hide", function(){
 	        	setTimeout(function() {
 	            	$("#memo_list *").remove();
 	            	$("#delt_memo_list *").remove();
-	        		memoList();
+	            	if(hide_check){
+	            		memoList_h();
+	            	}else{
+	            		memoList();
+	            	}
 	        		delt_memoList();
 	            }, 1500);
 		    }
@@ -190,7 +250,7 @@ $(document).on("click", ".memo_hide", function(){
 
 //메모 즐겨찾기
 $(document).on("click", ".memo_fav", function(){
-	
+	let hide_check = $("#hide_check").prop("checked");
 	let data = $(this).val();
 	
 	$.ajax({
@@ -204,7 +264,11 @@ $(document).on("click", ".memo_fav", function(){
 	        	setTimeout(function() {
 	            	$("#memo_list *").remove();
 	            	$("#delt_memo_list *").remove();
-	        		memoList();
+	            	if(hide_check){
+	            		memoList_h();
+	            	}else{
+	            		memoList();
+	            	}
 	        		delt_memoList();
 	            }, 1500);
 		    }
@@ -212,8 +276,16 @@ $(document).on("click", ".memo_fav", function(){
 	});
 }); 
 
-
-
+// 메모 숨김 리스트
+$(document).on("click", "#hide_check", function(){
+	let hide_check = $(this).prop("checked");
+	$("#memo_list *").remove();
+	if(hide_check){
+		memoList_h();
+	}else{
+		memoList();
+	}
+}); 
 
 
 

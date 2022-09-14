@@ -1,5 +1,6 @@
 package com.ColorMemos.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.ColorMemos.domain.MemoDTO;
@@ -38,5 +39,8 @@ public interface MemoService {
 	
 	// 메모 즐겨찾기 취소
 	public void memoFavCancel(String mno) throws Exception;
+	
+	// 메모 숨김제외 리스트
+	public List<MemoDTO> memoList_h(String email) throws Exception;
 
 }
