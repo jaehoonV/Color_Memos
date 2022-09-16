@@ -19,7 +19,7 @@ function memoList(){
             				"<div class='navigation'><div class='menuToggle'></div><div class='menu'>" +
             			    "<ul><li style='--i:0.1s'><a href><ion-icon name='camera-outline'></ion-icon></a></li>" +
             			    "<li style='--i:0.2s'><a href><ion-icon name='settings-outline'></ion-icon></a></li>" +
-            			    "<li style='--i:0.3s'><a href><ion-icon name='trash-outline'></ion-icon></a></li></ul></div></div>";
+            			    "<li style='--i:0.3s'><a href='#' onclick='deletememo(" +obj.mno+ ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul></div></div>";
             			    
             	if(obj.hide_gb == 1){
             		tag += "<button type='button' class='close memo_hide' style='color:blue;' value='" + obj.mno  + "'>hide</button>";
@@ -198,6 +198,34 @@ $(document).on("click", ".memo_close", function(){
 		}
 	});
 }); 
+
+function deletememo(mno){
+	let hide_check = $("#hide_check").prop("checked");
+	
+	$.ajax({
+		type: "POST",
+		url: "/memoDelete",  
+		dataType: "json",
+	    data: "mno=" + mno,
+	    async: false,
+	    success: function (data) {
+	        if(data == true){
+	        	$('#memo_delete_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
+	        	$('#memo_delete_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+	        	setTimeout(function() {
+	            	$("#memo_list *").remove();
+	            	$("#delt_memo_list *").remove();
+	            	if(hide_check){
+	            		memoList_h();
+	            	}else{
+	            		memoList();
+	            	}
+	        		delt_memoList();
+	            }, 1500);
+		    }
+		}
+	});
+}
 
 //메모 복구
 $(document).on("click", ".memo_restore", function(){
