@@ -15,7 +15,12 @@ function memoList(){
 			$.each(data, (index, obj) => {
 				
             	let tag = 	"<div class = 'memo_div'>" +
-            				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>";
+            				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
+            				"<div class='navigation'><div class='menuToggle'></div><div class='menu'>" +
+            			    "<ul><li style='--i:0.1s'><a href><ion-icon name='camera-outline'></ion-icon></a></li>" +
+            			    "<li style='--i:0.2s'><a href><ion-icon name='settings-outline'></ion-icon></a></li>" +
+            			    "<li style='--i:0.3s'><a href><ion-icon name='trash-outline'></ion-icon></a></li></ul></div></div>";
+            			    
             	if(obj.hide_gb == 1){
             		tag += "<button type='button' class='close memo_hide' style='color:blue;' value='" + obj.mno  + "'>hide</button>";
             	}else{
@@ -152,6 +157,10 @@ $(document).ready(function(){
     	});
     });
     
+    // memo menu
+    $(document).on("click", ".menuToggle", function(){
+    	$(this).toggleClass('active');
+    })
     
 }); 
 
@@ -286,6 +295,8 @@ $(document).on("click", "#hide_check", function(){
 		memoList();
 	}
 }); 
+
+
 
 
 

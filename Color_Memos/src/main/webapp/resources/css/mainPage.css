@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 :root { 
 	--bg_color: #edf1f4;
 	--green_color: #00b01c;
@@ -277,5 +279,117 @@ p{
     top: 0;
     width: 42px;
     height: 42px;
+}
+
+.navigation {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   float: right;
+}
+
+.menuToggle {
+   position: relative;
+   width: 40px;
+   height: 40px;
+   background-color: #fff;
+   border-radius: 70px;
+   cursor: pointer;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.menuToggle::before {
+   content: '+';
+   position: absolute;
+   font-size: 2em;
+   font-weight: 200;
+   color: #087fe0;
+   transition: 1.5s;
+   font-family: 'Poppins', sans-serif;
+}
+
+.menuToggle.active::before {
+   transform: rotate(225deg);
+}
+
+.menu {
+   position: absolute;
+   width: 30px;
+   height: 30px;
+   background: #fff;
+   border-radius: 70px;
+   z-index: -1;
+   transition: transform 0.5s, width 0.5s, height 0.5s;
+   transition-delay: 1s, 0.5s, 0.5s;
+   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.menuToggle.active~.menu {
+   width: 90px;
+   height: 30px;
+   z-index: 1;
+   transform: translateY(-50px);
+   transition-delay: 0s, 0.5s, 0.5s;
+   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+.menu::before {
+   content: '';
+   position: absolute;
+   width: 16px;
+   height: 16px;
+   background: #fff;
+   left: calc(50% - 8px);
+   bottom: 4px;
+   transform: rotate(45deg);
+   border-radius: 2px;
+   transition: 0.5s;
+}
+
+.menuToggle.active~.menu::before {
+   transition-delay: 0.5s;
+   bottom: -6px;
+}
+
+.menu ul {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 34px;
+   gap: 10px;
+   padding-left: 0;
+}
+
+.menu ul li {
+   list-style: none;
+   cursor: pointer;
+   opacity: 0;
+   visibility: hidden;
+   transform: translateY(-30px);
+   transition: 0.25s;
+   transition-delay: calc(0s + var(--i));
+}
+
+.menuToggle.active~.menu ul li {
+   opacity: 1;
+   visibility: visible;
+   transform: translateY(0px);
+   transition-delay: calc(0.75s + var(--i));
+}
+
+.menu ul li a {
+   display: block;
+   font-size: 1em;
+   text-decoration: none;
+   color: #555;
+}
+
+.menu ul li:hover a {
+   color: #087fe0;
 }
 
