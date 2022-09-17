@@ -15,17 +15,17 @@ function memoList(){
 			$.each(data, (index, obj) => {
 				
             	let tag = 	"<div class = 'memo_div'>" +
-            				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
             				"<div class='navigation'><div class='menuToggle'></div><div class='menu'>" +
-            			    "<ul><li style='--i:0.1s'><a href><ion-icon name='camera-outline'></ion-icon></a></li>" +
-            			    "<li style='--i:0.2s'><a href><ion-icon name='settings-outline'></ion-icon></a></li>" +
-            			    "<li style='--i:0.3s'><a href='#' onclick='deletememo(" +obj.mno+ ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul></div></div>";
-            			    
-            	if(obj.hide_gb == 1){
-            		tag += "<button type='button' class='close memo_hide' style='color:blue;' value='" + obj.mno  + "'>hide</button>";
+            			    "<ul><li style='--i:0.1s'><a href><ion-icon name='pencil-outline'></ion-icon></a></li>" +
+            			    "<li style='--i:0.2s'><a href='#' onclick='hidememo(" +obj.mno+ ");'>" ;
+            	if(obj.hide_gb == 1){		    
+            		tag += "<ion-icon name='eye-outline'></ion-icon></a></li>";
             	}else{
-            		tag += "<button type='button' class='close memo_hide' value='" + obj.mno  + "'>hide</button>";
+            		tag += "<ion-icon name='eye-off-outline'></ion-icon></a></li>";
             	}
+            	
+            	tag += "<li style='--i:0.3s'><a href='#' onclick='deletememo(" +obj.mno+ ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul></div></div>";
+            			    
             	if(obj.favorite_gb == 1){
             		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
             	}else{
@@ -284,6 +284,32 @@ $(document).on("click", ".memo_hide", function(){
 		}
 	});
 }); 
+
+function hidememo(mno){
+	let hide_check = $("#hide_check").prop("checked");
+	
+	$.ajax({
+		type: "POST",
+		url: "/memoHide",  
+		dataType: "json",
+	    data: "mno=" + mno,
+	    async: false,
+	    success: function (data) {
+	        if(data == true){
+	        	setTimeout(function() {
+	            	$("#memo_list *").remove();
+	            	$("#delt_memo_list *").remove();
+	            	if(hide_check){
+	            		memoList_h();
+	            	}else{
+	            		memoList();
+	            	}
+	        		delt_memoList();
+	            }, 1500);
+		    }
+		}
+	});
+}
 
 //메모 즐겨찾기
 $(document).on("click", ".memo_fav", function(){
