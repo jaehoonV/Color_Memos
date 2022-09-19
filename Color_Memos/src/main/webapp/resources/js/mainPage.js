@@ -62,15 +62,21 @@ function memoList_h(){
 		success : function(data){
 			$.each(data, (index, obj) => {
 				
-            	let tag = 	"<div class = 'memo_div'>" +
-            				"<button type='button' class='close memo_close' value='" + obj.mno  + "'>&times;</button>" +
-            				"<button type='button' class='close memo_hide' value='" + obj.mno  + "'>hide</button>";
-            	if(obj.favorite_gb == 1){
-            		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
-            	}else{
-            		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
-            	}
-            	
+				let tag = 	"<div class = 'memo_div'>" +
+				"<div class='navigation'><div class='menuToggle'></div><div class='menu'>" +
+			    "<ul><li style='--i:0.1s'><a href><ion-icon name='pencil-outline'></ion-icon></a></li>" +
+			    "<li style='--i:0.2s'><a href='#' onclick='hidememo(" +obj.mno+ ");'>" ;
+				
+				tag += "<ion-icon name='eye-off-outline'></ion-icon></a></li>" +
+						
+						"<li style='--i:0.3s'><a href='#' onclick='deletememo(" +obj.mno+ ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul></div></div>";
+			    
+				if(obj.favorite_gb == 1){
+					tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
+				}else{
+					tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
+				}
+	
 	   	     	tag +=		"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
 	   	     				"<div class = 'memo_content'>" +
 	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
@@ -227,7 +233,7 @@ function deletememo(mno){
 	});
 }
 
-//메모 복구
+// 메모 복구
 $(document).on("click", ".memo_restore", function(){
 	let hide_check = $("#hide_check").prop("checked");
 	let data = $(this).val();
@@ -257,7 +263,7 @@ $(document).on("click", ".memo_restore", function(){
 	});
 }); 
 
-//메모 숨김
+// 메모 숨김
 $(document).on("click", ".memo_hide", function(){
 	let hide_check = $("#hide_check").prop("checked");
 	let data = $(this).val();
@@ -311,7 +317,7 @@ function hidememo(mno){
 	});
 }
 
-//메모 즐겨찾기
+// 메모 즐겨찾기
 $(document).on("click", ".memo_fav", function(){
 	let hide_check = $("#hide_check").prop("checked");
 	let data = $(this).val();
