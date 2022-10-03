@@ -1,5 +1,4 @@
 Manifest-Version: 1.0
-Built-By: lkj10
-Build-Jdk: 1.8.0_301
+Build-Jdk-Spec: 19
 Created-By: Maven Integration for Eclipse
 

@@ -17,7 +17,7 @@
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
 			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
-		<property name="username" value="ColorMemos"></property>
+		<property name="username" value="c##ColorMemos"></property>
 		<property name="password" value="cm123"></property>
 
 	</bean>
