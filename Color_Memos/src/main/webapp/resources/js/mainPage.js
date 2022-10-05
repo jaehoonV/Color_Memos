@@ -16,7 +16,7 @@ function memoList(){
 				
             	let tag = 	"<div class = 'memo_div'>" +
             				"<div class='navigation'><div class='menuToggle'></div><div class='menu'>" +
-            			    "<ul><li style='--i:0.1s'><a href><ion-icon name='pencil-outline'></ion-icon></a></li>" +
+            			    "<ul><li style='--i:0.1s'><a href='#' onclick='updatememo(" +obj.mno+ ");' ><ion-icon name='pencil-outline'></ion-icon></a></li>" +
             			    "<li style='--i:0.2s'><a href='#' onclick='hidememo(" +obj.mno+ ");'>" ;
             	if(obj.hide_gb == 1){		    
             		tag += "<ion-icon name='eye-outline'></ion-icon></a></li>";
@@ -34,15 +34,8 @@ function memoList(){
             	
 	   	     	tag +=		"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
 	   	     				"<div class = 'memo_content'>" +
-	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
-	   	     				"<p>Day :" + obj.regday + "</p>" +
-	   	     				"<p>Color :" + obj.mcolor + "</p>" +
-	   	     				"<p>Hide_gb :" + obj.hide_gb + "</p>" +
-	   	     				"<p>Favorite_gb :" + obj.favorite_gb + "</p>" +
-	   	     				"<p>Delete_gb :" + obj.delete_gb + "</p>" +
-	   	     				"<p>Delt_date :" + obj.delt_date + "</p>" +
-	   	     				"<p>Restore_date :" + obj.restore_date + "</p>" +
-	   	     				"</div></div>";
+	   	     				"<p>" + obj.mdescription + "</p>" +
+	   	     				"</div>" + "<p class='regday'>" + obj.regday + "</p>" + "</div>";
             	
    	            $("#memo_list").append(tag);
             })
@@ -79,15 +72,8 @@ function memoList_h(){
 	
 	   	     	tag +=		"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
 	   	     				"<div class = 'memo_content'>" +
-	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
-	   	     				"<p>Day :" + obj.regday + "</p>" +
-	   	     				"<p>Color :" + obj.mcolor + "</p>" +
-	   	     				"<p>Hide_gb :" + obj.hide_gb + "</p>" +
-	   	     				"<p>Favorite_gb :" + obj.favorite_gb + "</p>" +
-	   	     				"<p>Delete_gb :" + obj.delete_gb + "</p>" +
-	   	     				"<p>Delt_date :" + obj.delt_date + "</p>" +
-	   	     				"<p>Restore_date :" + obj.restore_date + "</p>" +
-	   	     				"</div></div>";
+	   	     				"<p>" + obj.mdescription + "</p>" +
+	   	     				"</div>" + "<p class='regday'>" + obj.regday + "</p>" + "</div>";
             	
    	            $("#memo_list").append(tag);
             })
@@ -110,15 +96,8 @@ function delt_memoList(){
             				"<button type='button' class='close memo_restore' value='" + obj.mno  + "'>복구</button>" +
 	   	     				"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
 	   	     				"<div class = 'memo_content'>" +
-	   	     				"<p>Memo :" + obj.mdescription + "</p>" +
-	   	     				"<p>Day :" + obj.regday + "</p>" +
-	   	     				"<p>Color :" + obj.mcolor + "</p>" +
-	   	     				"<p>Hide_gb :" + obj.hide_gb + "</p>" +
-	   	     				"<p>Favorite_gb :" + obj.favorite_gb + "</p>" +
-	   	     				"<p>Delete_gb :" + obj.delete_gb + "</p>" +
-	   	     				"<p>Delt_date :" + obj.delt_date + "</p>" +
-	   	     				"<p>Restore_date :" + obj.restore_date + "</p>" +
-	   	     				"</div></div>";
+	   	     				"<p>" + obj.mdescription + "</p>" +
+	   	     				"</div>" + "<p class='regday'>" + obj.regday + "</p>" + "</div>";
             	
    	            $("#delt_memo_list").append(tag);
             })
@@ -135,7 +114,7 @@ $(document).ready(function(){
     	let hide_check = $("#hide_check").prop("checked");
     	let objParams = {
     		"mname" : $('#mname').val(),
-    	    "memo_text" : $('#memo_text').val()
+    	    "memo_text" : $('#memo_text').val().replace(/(?:\r\n|\r|\n)/g, '<br />')
         };
     	
     	$.ajax({

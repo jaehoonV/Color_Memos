@@ -11,6 +11,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	background: var(--bg_color) !important;
+	line-height: 1.2 !important;
 }
 
 p{
@@ -140,7 +141,7 @@ p{
     margin: 0.9rem;
     transition: 0.5s ease-in-out;
     width: 16rem;
-    height: 19rem;
+    height: 20rem;
     background: floralwhite;
     box-shadow: 5px 5px 10px 2px rgb(0 0 0 / 20%);
 }
@@ -391,5 +392,10 @@ p{
 
 .menu ul li:hover a {
    color: #087fe0;
+}
+
+.regday{
+	float: right;
+    color: #0000006b;
 }
 
