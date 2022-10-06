@@ -131,4 +131,9 @@
 		WHERE MNO = #{mno}
 	</update>
 	
+	<!-- 메모 수정 -->
+	<select id="modifyMemo_mno" resultType="com.ColorMemos.domain.MemoDTO">
+		SELECT * FROM MEMO WHERE MNO = #{mno} 
+	</select>
+	
 </mapper>

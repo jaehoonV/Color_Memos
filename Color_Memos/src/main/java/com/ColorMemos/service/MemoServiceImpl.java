@@ -87,5 +87,11 @@ public class MemoServiceImpl implements MemoService{
 	public List<MemoDTO> memoList_h(String email) throws Exception {
 		return memoMapper.memoList_h(email);
 	}
+	
+	// 메모 수정
+	@Override
+	public MemoDTO modifyMemo_mno(int mno) throws Exception {
+		return memoMapper.modifyMemo_mno(mno);
+	}
 
 }

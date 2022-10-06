@@ -77,7 +77,7 @@ public class MemoController {
 
 		return memolist;
 	}
-	
+
 	// 메모 숨김제외 리스트
 	@RequestMapping(value = "/memoList_h", method = RequestMethod.POST)
 	@ResponseBody
@@ -167,6 +167,15 @@ public class MemoController {
 		}
 
 		response.getWriter().print(true);
+	}
+
+	// 메모 수정 검색
+	@ResponseBody
+	@RequestMapping(value = "/modifyMemo_mno", method = RequestMethod.POST)
+	public MemoDTO modifyMemo_mno(@RequestParam("mno") int mno) throws Exception {
+		System.out.println(">>>>>>>>>>>>>>>modifyMemo_mno<<<<<<<<<<<");
+		// 글 검색
+		return memoService.modifyMemo_mno(mno);
 	}
 
 }

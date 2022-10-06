@@ -16,7 +16,7 @@ function memoList(){
 				
             	let tag = 	"<div class = 'memo_div'>" +
             				"<div class='navigation'><div class='menuToggle'></div><div class='menu'>" +
-            			    "<ul><li style='--i:0.1s'><a href='#' onclick='updatememo(" +obj.mno+ ");' ><ion-icon name='pencil-outline'></ion-icon></a></li>" +
+            			    "<ul><li style='--i:0.1s'><a  data-toggle='modal' href='#modifyMemo' onclick='modifyMemo(" +obj.mno+ ");' ><ion-icon name='pencil-outline'></ion-icon></a></li>" +
             			    "<li style='--i:0.2s'><a href='#' onclick='hidememo(" +obj.mno+ ");'>" ;
             	if(obj.hide_gb == 1){		    
             		tag += "<ion-icon name='eye-outline'></ion-icon></a></li>";
@@ -335,6 +335,24 @@ $(document).on("click", "#hide_check", function(){
 	}
 }); 
 
+// 메모 수정
+function modifyMemo(mno) {
+	console.log('modifyMemo click');
+	$.ajax({
+		url: "/modifyMemo_mno",  
+		type: "POST",
+		dataType: "json",
+		data: {
+			mno: mno,
+		},
+		success : function(data){
+			console.log(data);
+			$('#modify_memo_title').val(data.mname);
+			$('#modify_memo_content').val(data.mdescription);
+			$('#modify_memo_mno').val(data.mno);
+		}
+	});
+}
 
 
 

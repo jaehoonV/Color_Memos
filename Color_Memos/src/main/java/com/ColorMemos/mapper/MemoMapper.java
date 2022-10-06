@@ -41,6 +41,9 @@ public interface MemoMapper {
 	
 	// 메모 숨김제외 리스트
 	public List<MemoDTO> memoList_h(String email) throws Exception;
+	
+	// 메모 수정
+	public MemoDTO modifyMemo_mno(int mno) throws Exception;
 
 
 }

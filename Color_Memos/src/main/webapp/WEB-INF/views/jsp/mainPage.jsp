@@ -63,27 +63,48 @@
 		<div class="modal-dialog modal-dialog-centered memo_register-modal">
 			<div class="modal-content memo_register-modal-content">
 				<form id="memo_register_form" name="memo_register_form">
-				<!-- Modal Header -->
 				<div class="modal-header memo_header">
-					<!-- Memo name input-->
 					<input class="memo_title_input" id="mname" type="text" name="mname" placeholder="메모 제목을 입력하세요" />
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<!-- Modal body -->
 				<div class="modal-body">
-						<!-- Memo  input-->
 						<div class="memo_text_form">
 							<textarea class="memo_input" id="memo_text" name="mdescription" placeholder="메모"></textarea>
 						</div>
-						<!-- Memo Submit Button-->
 						<button type="button" class="memo_submit">만들기</button>
-					<!-- /memo_regist closed-->
 				</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	<!-- modal closed-->
+	
+	<!-- 메모 수정 -->
+	<div class="modal fade" id="modifyMemo">
+		<div class="modal-dialog modal-dialog-centered memo_modify-modal">
+			<div class="modal-content memo_modify-modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title memo_modify-modal-title" id="modifyMemoLabel">메모 수정</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="/modifyMemo" method="post" id="modifyMemoForm" enctype="multipart/form-data">
+					<div class="modal-body">
+						<input type="hidden" id="modify_memo_mno" name="mno">
+						<div class="form-group">
+							<input name="text_title" type="text" id="modify_memo_title" placeholder="메모 제목을 입력하세요.">
+							<textarea name="memo_content" id="modify_memo_content" placeholder="메모"></textarea>
+						</div>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="submit" class="modal_submit smallBtn">수정</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
