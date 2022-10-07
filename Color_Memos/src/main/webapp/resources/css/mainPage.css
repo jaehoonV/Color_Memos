@@ -32,22 +32,11 @@ p{
     font-weight: 600;
 }
 
-#memo_register1, #modifyMemo {
-	width: 30%;
-	height: 30%;
-	min-height: 350px;
-	border: 1px solid var(--green_color);
-	border-radius: 10px;
-	background: var(--green_color);
-	margin: 0 auto;
-	box-shadow: 15px 15px 20px rgb(0 0 0 / 25%), -15px -15px 20px #fff;
-}
-
 .memo_header{
 	padding: 0.5rem 1rem !important;
 }
 
-.memo_submit {
+.memo_submit, .memo_modify_submit {
 	all: unset;
 	background: gray;
 	margin: 0 35%;
@@ -59,7 +48,7 @@ p{
 	border-radius: 4px;
 }
 
-.memo_submit:hover {
+.memo_submit:hover, .memo_modify_submit:hover {
 	background: #7163c4;
 }
 

@@ -94,4 +94,9 @@ public class MemoServiceImpl implements MemoService{
 		return memoMapper.modifyMemo_mno(mno);
 	}
 
+	@Override
+	public void modifyMemo(MemoDTO memoDTO) throws Exception {
+		memoMapper.modifyMemo(memoDTO);
+	}
+
 }

@@ -136,4 +136,10 @@
 		SELECT * FROM MEMO WHERE MNO = #{mno} 
 	</select>
 	
+	<!-- 메모 수정 -->
+	<update id="modifyMemo">
+		UPDATE MEMO SET MNAME = #{mname}, MDESCRIPTION = #{mdescription} 
+		WHERE MNO = #{mno}
+	</update>
+	
 </mapper>

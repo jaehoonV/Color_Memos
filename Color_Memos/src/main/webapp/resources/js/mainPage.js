@@ -108,8 +108,8 @@ function delt_memoList(){
 	}); 
 }
 
-/* 메모 작성 */
 $(document).ready(function(){
+	/* 메모 작성 */
     $('.memo_submit').on('click',function () {
     	let hide_check = $("#hide_check").prop("checked");
     	let objParams = {
@@ -129,6 +129,40 @@ $(document).ready(function(){
     	        	$('#memo_register_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
     	        	setTimeout(function() {
     	        		$("#memo_register").modal("hide");
+    	        		document.forms['memo_register_form'].reset();
+        	        	$("#memo_list *").remove();
+        	        	if(hide_check){
+    	            		memoList_h();
+    	            	}else{
+    	            		memoList();
+    	            	}
+		            }, 1500);
+    	        }
+    	    }
+    	});
+    });
+    
+    /* 메모 수정 */
+    $('.memo_modify_submit').on('click',function () {
+    	let hide_check = $("#hide_check").prop("checked");
+    	let objParams = {
+    		"mname" : $('#modify_memo_title').val(),
+    	    "mdescription" : $('#modify_memo_content').val().replace(/(?:\r\n|\r|\n)/g, '<br />'),
+        	"mno" : $('#modify_memo_mno').val()
+        };
+    	
+    	$.ajax({
+    		type: "POST",
+    	    url: "/modifyMemo",  
+    	    dataType: "json",
+    	    data: objParams,
+    	    async: false,
+    	    success: function (data) {
+    	        if(data == true){
+    	        	$('#memo_modify_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
+    	        	$('#memo_modify_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+    	        	setTimeout(function() {
+    	        		$("#modifyMemo").modal("hide");
     	        		document.forms['memo_register_form'].reset();
         	        	$("#memo_list *").remove();
         	        	if(hide_check){
@@ -348,7 +382,7 @@ function modifyMemo(mno) {
 		success : function(data){
 			console.log(data);
 			$('#modify_memo_title').val(data.mname);
-			$('#modify_memo_content').val(data.mdescription);
+			$('#modify_memo_content').val(data.mdescription.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n'));
 			$('#modify_memo_mno').val(data.mno);
 		}
 	});

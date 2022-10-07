@@ -45,5 +45,7 @@ public interface MemoMapper {
 	// 메모 수정
 	public MemoDTO modifyMemo_mno(int mno) throws Exception;
 
+	public void modifyMemo(MemoDTO memoDTO) throws Exception;
+
 
 }

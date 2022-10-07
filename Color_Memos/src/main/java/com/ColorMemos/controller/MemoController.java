@@ -178,4 +178,24 @@ public class MemoController {
 		return memoService.modifyMemo_mno(mno);
 	}
 
+	// 매모 수정
+	@ResponseBody
+	@RequestMapping(value = "/modifyMemo", method = RequestMethod.POST)
+	public void modifyMemo(MemoDTO memoDTO, @RequestParam("mname") String mname,
+			@RequestParam("mdescription") String mdescription, @RequestParam("mno") int mno,
+			HttpServletResponse response) throws Exception {
+		System.out.println(">>>>>>>>>modifyMemo<<<<<<<<<<");
+
+		// 메모
+		memoDTO.setMno(mno);
+		memoDTO.setMname(mname);
+		memoDTO.setMdescription(mdescription);
+		System.out.println(memoDTO);
+
+		// 메모 수정
+		memoService.modifyMemo(memoDTO);
+
+		response.getWriter().print(true);
+	}
+
 }
