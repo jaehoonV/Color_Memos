@@ -9,7 +9,7 @@ $(document).ready(function(){
 function memoList(){
 	$.ajax({
 		url: "/memoList",
-		type: "POST", 
+		type: "GET", 
 		dataType: "json",
 		success : function(data){
 			$.each(data, (index, obj) => {
@@ -388,9 +388,61 @@ function modifyMemo(mno) {
 	});
 }
 
+// 검색
+const userCardTemplate = document.querySelector("[data-user-template]")
+const userCardContainer = document.querySelector("[data-user-cards-container]")
+const searchInput = document.querySelector("[data-search]")
+
+let objs = []
+
+searchInput.addEventListener("input", (e) => { // 입력하는 것에 모두 실행
+   const value = e.target.value.toLowerCase() // 소문자, 대문자 구분 X
+   console.log(value);
+   objs.forEach(obj => {
+      const isVisible = obj.mname.toLowerCase().includes(value) || obj.mdescription.toLowerCase().includes(value) // 입력값이 name이나 email에 포함돼있다면 true
+      obj.element.classList.toggle("hide", !isVisible) // false일 경우 hide
+   })
+})
+
+/* fetch("/memoList")
+   .then(res => res.json()) // 응답을 json형식으로 받기
+   .then(data => {
+	console.log(data);
+      objs = data.map(obj => {
+         const card = userCardTemplate.content.cloneNode(true).children[0] // 첫번째 자식을 가져옴
+         const header = card.querySelector("[data-header]")
+         const body = card.querySelector("[data-body]")
+         header.textContent = obj.mname
+         body.textContent = obj.mdescription
+         userCardContainer.append(card)
+         return { mname: obj.mname, mdescription: obj.mdescription, element: card }
+      });
+   }) */
 
 
+function memoListTest(){
+	$.ajax({
+		url: "/memoList",
+		type: "GET", 
+		dataType: "json",
+		success : function(data){
+			objs = data.map(obj => {
+         const card = userCardTemplate.content.cloneNode(true).children[0] // 첫번째 자식을 가져옴
+         const header = card.querySelector("[data-header]")
+         const body = card.querySelector("[data-body]")
+         header.textContent = obj.mname
+         body.textContent = obj.mdescription
+         userCardContainer.append(card)
+         return { mname: obj.mname, mdescription: obj.mdescription, element: card }
+      		});
+		},
+		error :function(){
+			alert("request error!");
+		}
+	}); 
+}
 
+memoListTest();
 
 
 

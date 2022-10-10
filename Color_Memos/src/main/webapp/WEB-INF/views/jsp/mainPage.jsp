@@ -14,7 +14,7 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- js -->
-<script src="/resources/js/mainPage.js"></script>
+<script src="/resources/js/mainPage.js" defer></script>
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/f1b7ad5b17.js" crossorigin="anonymous"></script>
 <!-- 부트스트랩 -->
@@ -29,6 +29,22 @@
 	<!-- Button to Open the Modal -->
 	<button type="button" class="green_class" data-toggle="modal" data-target="#memo_register" id="popup_memo_register">메모 추가</button>
 	
+	<!-- search bar -->
+	<div class="search_wrapper">
+      <label for="search">Search</label>
+      <input type="search" id="search_input" data-search>
+  	</div>
+  	
+  	<div class="user-cards" data-user-cards-container>
+
+   </div>
+   <template data-user-template>
+      <div class="card">
+         <div class="header" data-header></div>
+         <div class="body" data-body></div>
+      </div>
+   </template>
+   
 	<section class="hide_section">
 		<div class="hide_div">
 		<span>hide button</span>

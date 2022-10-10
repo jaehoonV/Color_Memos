@@ -1,7 +1,6 @@
 package com.ColorMemos.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,11 +58,11 @@ public class MemoController {
 		response.getWriter().print(true);
 	}
 
-	@RequestMapping(value = "/memoList", method = RequestMethod.POST)
+	@RequestMapping(value = "/memoList", method = RequestMethod.GET)
 	@ResponseBody
 	public List<MemoDTO> memoList(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
 		System.out.println("memo list!!");
-
+		
 		List<MemoDTO> memolist = new ArrayList<>();
 
 		// 세션 생성
@@ -74,7 +73,7 @@ public class MemoController {
 
 		// memoList
 		memolist.addAll(memoService.memoList(email));
-
+		
 		return memolist;
 	}
 

@@ -1,6 +1,5 @@
 package com.ColorMemos.service;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.ColorMemos.domain.MemoDTO;
