@@ -2,8 +2,27 @@ $(document).ready(function(){
 	memoList();
 })
 
+/* $(document).ready(function(){
+	memoListTest();
+})*/
+
 $(document).ready(function(){
 	delt_memoList();
+})
+
+// 검색
+const userCardTemplate = document.querySelector("[data-user-template]")
+const userCardContainer = document.querySelector("[data-user-cards-container]")
+const searchInput = document.querySelector("[data-search]")
+
+let objs = []
+
+searchInput.addEventListener("input", (e) => { // 입력하는 것에 모두 실행
+   const value = e.target.value.toLowerCase() // 소문자, 대문자 구분 X
+   objs.forEach(obj => {
+      const isVisible = obj.mname.toLowerCase().includes(value) || obj.mdescription.toLowerCase().includes(value) // 입력값이 name이나 email에 포함돼있다면 true
+      obj.element.classList.toggle("hide", !isVisible) // false일 경우 hide
+   })
 })
 
 function memoList(){
@@ -12,33 +31,39 @@ function memoList(){
 		type: "GET", 
 		dataType: "json",
 		success : function(data){
-			$.each(data, (index, obj) => {
-				
-            	let tag = 	"<div class = 'memo_div'>" +
-            				"<div class='navigation'><div class='menuToggle'></div><div class='menu'>" +
-            			    "<ul><li style='--i:0.1s'><a  data-toggle='modal' href='#modifyMemo' onclick='modifyMemo(" +obj.mno+ ");' ><ion-icon name='pencil-outline'></ion-icon></a></li>" +
-            			    "<li style='--i:0.2s'><a href='#' onclick='hidememo(" +obj.mno+ ");'>" ;
-            	if(obj.hide_gb == 1){		    
-            		tag += "<ion-icon name='eye-outline'></ion-icon></a></li>";
-            	}else{
-            		tag += "<ion-icon name='eye-off-outline'></ion-icon></a></li>";
-            	}
+			objs = data.map(obj => {
+         const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
+         const header = card.querySelector("[data-mname]");
+         const menu = card.querySelector("[data-menu]");
+         const navigation = card.querySelector("[data-navigation]");
+         const body = card.querySelector("[data-content]");
+         const footer = card.querySelector("[data-day]");
+         
+         let tag = "<ul><li style='--i:0.1s'><a  data-toggle='modal' href='#modifyMemo' onclick='modifyMemo(" +obj.mno+ ");' ><ion-icon name='pencil-outline'></ion-icon></a></li><li style='--i:0.2s'><a href='#' onclick='hidememo(" +obj.mno+ ");'>" ;
+         if(obj.hide_gb == 1){		    
+            tag += "<ion-icon name='eye-outline'></ion-icon></a></li>";
+         }else{
+            tag += "<ion-icon name='eye-off-outline'></ion-icon></a></li>";
+         }
             	
-            	tag += "<li style='--i:0.3s'><a href='#' onclick='deletememo(" +obj.mno+ ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul></div></div>";
+         tag += "<li style='--i:0.3s'><a href='#' onclick='deletememo(" +obj.mno+ ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul>";
+         
+         let tag_fav = "";
             			    
-            	if(obj.favorite_gb == 1){
-            		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
-            	}else{
-            		tag += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
-            	}
-            	
-	   	     	tag +=		"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
-	   	     				"<div class = 'memo_content'>" +
-	   	     				"<p>" + obj.mdescription + "</p>" +
-	   	     				"</div>" + "<p class='regday'>" + obj.regday + "</p>" + "</div>";
-            	
-   	            $("#memo_list").append(tag);
-            })
+         if(obj.favorite_gb == 1){
+            tag_fav += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
+         }else{
+            tag_fav += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
+         }
+                  
+         $(menu).html(tag).trigger("create");
+         $(navigation).after(tag_fav);
+         $(header).html(obj.mname).trigger("create");
+         $(body).html(obj.mdescription).trigger("create");
+         $(footer).html(obj.regday).trigger("create");
+         userCardContainer.append(card)
+         return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
+      		});
 		},
 		error :function(){
 			alert("request error!");
@@ -75,7 +100,7 @@ function memoList_h(){
 	   	     				"<p>" + obj.mdescription + "</p>" +
 	   	     				"</div>" + "<p class='regday'>" + obj.regday + "</p>" + "</div>";
             	
-   	            $("#memo_list").append(tag);
+   	            $(".user-cards").append(tag);
             })
 		},
 		error :function(){
@@ -130,10 +155,11 @@ $(document).ready(function(){
     	        	setTimeout(function() {
     	        		$("#memo_register").modal("hide");
     	        		document.forms['memo_register_form'].reset();
-        	        	$("#memo_list *").remove();
+        	        	$(".user-cards *").remove();
         	        	if(hide_check){
     	            		memoList_h();
     	            	}else{
+							
     	            		memoList();
     	            	}
 		            }, 1500);
@@ -164,7 +190,7 @@ $(document).ready(function(){
     	        	setTimeout(function() {
     	        		$("#modifyMemo").modal("hide");
     	        		document.forms['memo_register_form'].reset();
-        	        	$("#memo_list *").remove();
+        	        	$(".user-cards *").remove();
         	        	if(hide_check){
     	            		memoList_h();
     	            	}else{
@@ -204,7 +230,7 @@ $(document).on("click", ".memo_close", function(){
 	        	$('#memo_delete_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
 	        	$('#memo_delete_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
 	        	setTimeout(function() {
-	            	$("#memo_list *").remove();
+	            	$(".user-cards *").remove();
 	            	$("#delt_memo_list *").remove();
 	            	if(hide_check){
 	            		memoList_h();
@@ -232,7 +258,7 @@ function deletememo(mno){
 	        	$('#memo_delete_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
 	        	$('#memo_delete_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
 	        	setTimeout(function() {
-	            	$("#memo_list *").remove();
+	            	$(".user-cards *").remove();
 	            	$("#delt_memo_list *").remove();
 	            	if(hide_check){
 	            		memoList_h();
@@ -262,7 +288,7 @@ $(document).on("click", ".memo_restore", function(){
 	        	$('#memo_restore_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
 	        	$('#memo_restore_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
 	        	setTimeout(function() {
-	            	$("#memo_list *").remove();
+	            	$(".user-cards *").remove();
 	            	$("#delt_memo_list *").remove();
 	            	if(hide_check){
 	            		memoList_h();
@@ -290,7 +316,7 @@ $(document).on("click", ".memo_hide", function(){
 	    success: function (data) {
 	        if(data == true){
 	        	setTimeout(function() {
-	            	$("#memo_list *").remove();
+	            	$(".user-cards *").remove();
 	            	$("#delt_memo_list *").remove();
 	            	if(hide_check){
 	            		memoList_h();
@@ -316,7 +342,7 @@ function hidememo(mno){
 	    success: function (data) {
 	        if(data == true){
 	        	setTimeout(function() {
-	            	$("#memo_list *").remove();
+	            	$(".user-cards *").remove();
 	            	$("#delt_memo_list *").remove();
 	            	if(hide_check){
 	            		memoList_h();
@@ -344,7 +370,7 @@ $(document).on("click", ".memo_fav", function(){
 	    success: function (data) {
 	        if(data == true){
 	        	setTimeout(function() {
-	            	$("#memo_list *").remove();
+	            	$(".user-cards *").remove();
 	            	$("#delt_memo_list *").remove();
 	            	if(hide_check){
 	            		memoList_h();
@@ -361,7 +387,7 @@ $(document).on("click", ".memo_fav", function(){
 // 메모 숨김 리스트
 $(document).on("click", "#hide_check", function(){
 	let hide_check = $(this).prop("checked");
-	$("#memo_list *").remove();
+	$(".user-cards *").remove();
 	if(hide_check){
 		memoList_h();
 	}else{
@@ -388,36 +414,6 @@ function modifyMemo(mno) {
 	});
 }
 
-// 검색
-const userCardTemplate = document.querySelector("[data-user-template]")
-const userCardContainer = document.querySelector("[data-user-cards-container]")
-const searchInput = document.querySelector("[data-search]")
-
-let objs = []
-
-searchInput.addEventListener("input", (e) => { // 입력하는 것에 모두 실행
-   const value = e.target.value.toLowerCase() // 소문자, 대문자 구분 X
-   console.log(value);
-   objs.forEach(obj => {
-      const isVisible = obj.mname.toLowerCase().includes(value) || obj.mdescription.toLowerCase().includes(value) // 입력값이 name이나 email에 포함돼있다면 true
-      obj.element.classList.toggle("hide", !isVisible) // false일 경우 hide
-   })
-})
-
-/* fetch("/memoList")
-   .then(res => res.json()) // 응답을 json형식으로 받기
-   .then(data => {
-	console.log(data);
-      objs = data.map(obj => {
-         const card = userCardTemplate.content.cloneNode(true).children[0] // 첫번째 자식을 가져옴
-         const header = card.querySelector("[data-header]")
-         const body = card.querySelector("[data-body]")
-         header.textContent = obj.mname
-         body.textContent = obj.mdescription
-         userCardContainer.append(card)
-         return { mname: obj.mname, mdescription: obj.mdescription, element: card }
-      });
-   }) */
 
 
 function memoListTest(){
@@ -427,13 +423,37 @@ function memoListTest(){
 		dataType: "json",
 		success : function(data){
 			objs = data.map(obj => {
-         const card = userCardTemplate.content.cloneNode(true).children[0] // 첫번째 자식을 가져옴
-         const header = card.querySelector("[data-header]")
-         const body = card.querySelector("[data-body]")
-         header.textContent = obj.mname
-         body.textContent = obj.mdescription
+         const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
+         const header = card.querySelector("[data-mname]");
+         const menu = card.querySelector("[data-menu]");
+         const navigation = card.querySelector("[data-navigation]");
+         const body = card.querySelector("[data-content]");
+         const footer = card.querySelector("[data-day]");
+         
+         let tag = "<ul><li style='--i:0.1s'><a  data-toggle='modal' href='#modifyMemo' onclick='modifyMemo(" +obj.mno+ ");' ><ion-icon name='pencil-outline'></ion-icon></a></li><li style='--i:0.2s'><a href='#' onclick='hidememo(" +obj.mno+ ");'>" ;
+         if(obj.hide_gb == 1){		    
+            tag += "<ion-icon name='eye-outline'></ion-icon></a></li>";
+         }else{
+            tag += "<ion-icon name='eye-off-outline'></ion-icon></a></li>";
+         }
+            	
+         tag += "<li style='--i:0.3s'><a href='#' onclick='deletememo(" +obj.mno+ ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul>";
+         
+         let tag_fav = "";
+            			    
+         if(obj.favorite_gb == 1){
+            tag_fav += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
+         }else{
+            tag_fav += "<button type='button' class='close memo_fav' value='" + obj.mno  + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
+         }
+                  
+         $(menu).html(tag).trigger("create");
+         $(navigation).after(tag_fav);
+         $(header).html(obj.mname).trigger("create");
+         $(body).html(obj.mdescription).trigger("create");
+         $(footer).html(obj.regday).trigger("create");
          userCardContainer.append(card)
-         return { mname: obj.mname, mdescription: obj.mdescription, element: card }
+         return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
       		});
 		},
 		error :function(){
@@ -442,7 +462,7 @@ function memoListTest(){
 	}); 
 }
 
-memoListTest();
+
 
 
 

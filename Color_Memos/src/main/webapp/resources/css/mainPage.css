@@ -174,7 +174,8 @@ p{
 }
 
 .hide_section{
-    padding: 25px 0;
+    padding: 10px 0;
+    display: inline-block;
 }
 
 .hide_div{
@@ -390,23 +391,14 @@ p{
 }
 
 .search_wrapper {
-   display: flex;
-   flex-direction: column;
-   gap: .25rem;
+   display: inline-block;
+   width: 50%;
 }
 
 .search_input {
    width: 20rem;
    height: 2rem;
    font-size: 1rem;
-}
-
-.user-cards {
-   display: grid;
-   /* 자동 채우기 */
-   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-   gap: .25rem;
-   margin-top: 1rem;
 }
 
 .card {
