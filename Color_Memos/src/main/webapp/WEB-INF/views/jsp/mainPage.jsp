@@ -35,7 +35,62 @@
 </head>
 <body>
 	<div>HI, This page is MainPage.</div>
-
+	
+	<div class="side_nav">
+      <ul>
+         <li>
+            <a href="#">
+               <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+               <span class="title">Brand Name</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+               <span class="title">Dashboard</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+               <span class="title">Customers</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+               <span class="title">Messages</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+               <span class="title">Help</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+               <span class="title">Setting</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+               <span class="title">Password</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+               <span class="title">Sign out</span>
+            </a>
+         </li>
+      </ul>
+      <div class="toggle"></div>
+   </div>
+   
+	<section id="main_content">
 	<!-- Button to Open the Modal -->
 	<button type="button" class="green_class" data-toggle="modal"
 		data-target="#memo_register" id="popup_memo_register">메모 추가</button>
@@ -137,7 +192,7 @@
 		</div>
 	</div>
 	<!-- modal closed-->
-
+	</section>
 	<script type="module"
 		src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule
