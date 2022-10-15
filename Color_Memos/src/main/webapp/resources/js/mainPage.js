@@ -2,14 +2,6 @@ $(document).ready(function() {
 	memoList();
 })
 
-/* $(document).ready(function(){
-	memoListTest();
-})*/
-
-$(document).ready(function() {
-	delt_memoList();
-})
-
 // side navigation
 let side_nav = document.querySelector('.side_nav');
 
@@ -24,9 +16,9 @@ tog.onclick = function() {
 }
 
 // 검색
-const userCardTemplate = document.querySelector("[data-user-template]")
-const userCardContainer = document.querySelector("[data-user-cards-container]")
-const searchInput = document.querySelector("[data-search]")
+const userCardTemplate = document.querySelector("[data-user-template]");
+const userCardContainer = document.querySelector("[data-user-cards-container]");
+const searchInput = document.querySelector("[data-search]");
 
 let objs = []
 
@@ -74,9 +66,11 @@ function memoList() {
 				$(header).html(obj.mname).trigger("create");
 				$(body).html(obj.mdescription).trigger("create");
 				$(footer).html(obj.regday).trigger("create");
-				userCardContainer.append(card)
+				userCardContainer.append(card);
 				return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
 			});
+			
+			$(".user-cards").css({ opacity: 0 }).animate({ opacity: 1 }, 700)
 		},
 		error: function() {
 			alert("request error!");
@@ -122,29 +116,44 @@ function memoList_h() {
 	});
 }
 
-function delt_memoList() {
-	$.ajax({
+// 삭제된 메모 리스트
+$(document).on("click", "#delete_memo_list", function() {
+		$.ajax({
 		url: "/delt_memoList",
-		type: "POST",
+		type: "GET",
 		dataType: "json",
 		success: function(data) {
-			$.each(data, (index, obj) => {
+			$(".user-cards *").remove();
+			objs = data.map(obj => {
+				const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
+				const header = card.querySelector("[data-mname]");
+				const menu = card.querySelector("[data-menu]");
+				const navigation = card.querySelector("[data-navigation]");
+				const body = card.querySelector("[data-content]");
+				const footer = card.querySelector("[data-day]");
 
-				let tag = "<div class = 'memo_div'>" +
-					"<button type='button' class='close memo_restore' value='" + obj.mno + "'>복구</button>" +
-					"<p style='font-weight:bold;'>" + obj.mname + "</p>" +
-					"<div class = 'memo_content'>" +
-					"<p>" + obj.mdescription + "</p>" +
-					"</div>" + "<p class='regday'>" + obj.regday + "</p>" + "</div>";
+				let tag = "<ul><li style='--i:0.1s'><a data-toggle='modal' href='#' onclick='restorememo(" + obj.mno + ")'><ion-icon name='refresh-outline'></ion-icon></a></li></ul>";
 
-				$("#delt_memo_list").append(tag);
-			})
+				$(menu).html(tag).trigger("create");
+				$(header).html(obj.mname).trigger("create");
+				$(body).html(obj.mdescription).trigger("create");
+				$(footer).html(obj.regday).trigger("create");
+				userCardContainer.append(card)
+				return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
+			});
+			$(".user-cards").css({ opacity: 0 }).animate({ opacity: 1 }, 700)
 		},
 		error: function() {
 			alert("request error!");
 		}
 	});
-}
+});
+
+// 메모리스트
+$(document).on("click", "#memo_list", function() {
+	$(".user-cards *").remove();
+	memoList();
+});
 
 $(document).ready(function() {
 	/* 메모 작성 */
@@ -163,8 +172,12 @@ $(document).ready(function() {
 			async: false,
 			success: function(data) {
 				if (data == true) {
+					$('#memo_register_message').css({display: "block" });
 					$('#memo_register_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
 					$('#memo_register_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+					setTimeout(function() {
+						$('#memo_register_message').css({display: "none" });
+					}, 1300);
 					setTimeout(function() {
 						$("#memo_register").modal("hide");
 						document.forms['memo_register_form'].reset();
@@ -172,10 +185,9 @@ $(document).ready(function() {
 						if (hide_check) {
 							memoList_h();
 						} else {
-
 							memoList();
 						}
-					}, 1500);
+					}, 1400);
 				}
 			}
 		});
@@ -198,8 +210,12 @@ $(document).ready(function() {
 			async: false,
 			success: function(data) {
 				if (data == true) {
+					$('#memo_modify_message').css({ display: "block" })
 					$('#memo_modify_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
 					$('#memo_modify_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+					setTimeout(function() {
+						$('#memo_modify_message').css({display: "none" });
+					}, 1300);
 					setTimeout(function() {
 						$("#modifyMemo").modal("hide");
 						document.forms['memo_register_form'].reset();
@@ -209,7 +225,7 @@ $(document).ready(function() {
 						} else {
 							memoList();
 						}
-					}, 1500);
+					}, 1400);
 				}
 			}
 		});
@@ -228,35 +244,6 @@ $('#memo_register').on('hidden.bs.modal', function(e) {
 });
 
 // 메모 삭제
-$(document).on("click", ".memo_close", function() {
-	let hide_check = $("#hide_check").prop("checked");
-	let data = $(this).val();
-
-	$.ajax({
-		type: "POST",
-		url: "/memoDelete",
-		dataType: "json",
-		data: "mno=" + data,
-		async: false,
-		success: function(data) {
-			if (data == true) {
-				$('#memo_delete_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
-				$('#memo_delete_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
-				setTimeout(function() {
-					$(".user-cards *").remove();
-					$("#delt_memo_list *").remove();
-					if (hide_check) {
-						memoList_h();
-					} else {
-						memoList();
-					}
-					delt_memoList();
-				}, 1500);
-			}
-		}
-	});
-});
-
 function deletememo(mno) {
 	let hide_check = $("#hide_check").prop("checked");
 
@@ -268,8 +255,12 @@ function deletememo(mno) {
 		async: false,
 		success: function(data) {
 			if (data == true) {
+				$('#memo_delete_message').css({ display: "block" });
 				$('#memo_delete_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
 				$('#memo_delete_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+				setTimeout(function() {
+					$('#memo_delete_message').css({display: "none" });
+				}, 1300);
 				setTimeout(function() {
 					$(".user-cards *").remove();
 					$("#delt_memo_list *").remove();
@@ -278,28 +269,30 @@ function deletememo(mno) {
 					} else {
 						memoList();
 					}
-					delt_memoList();
-				}, 1500);
+				}, 1400);
 			}
 		}
 	});
 }
 
 // 메모 복구
-$(document).on("click", ".memo_restore", function() {
+function restorememo(mno) {
 	let hide_check = $("#hide_check").prop("checked");
-	let data = $(this).val();
-
+	
 	$.ajax({
 		type: "POST",
 		url: "/memoRestore",
 		dataType: "json",
-		data: "mno=" + data,
+		data: "mno=" + mno,
 		async: false,
 		success: function(data) {
 			if (data == true) {
+				$('#memo_restore_message').css({ display: "block" });
 				$('#memo_restore_message').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
 				$('#memo_restore_message').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+				setTimeout(function() {
+					$('#memo_restore_message').css({display: "none" });
+				}, 1300);
 				setTimeout(function() {
 					$(".user-cards *").remove();
 					$("#delt_memo_list *").remove();
@@ -308,12 +301,11 @@ $(document).on("click", ".memo_restore", function() {
 					} else {
 						memoList();
 					}
-					delt_memoList();
-				}, 1500);
+				}, 1400);
 			}
 		}
 	});
-});
+}
 
 // 메모 숨김
 $(document).on("click", ".memo_hide", function() {
@@ -336,7 +328,6 @@ $(document).on("click", ".memo_hide", function() {
 					} else {
 						memoList();
 					}
-					delt_memoList();
 				}, 1500);
 			}
 		}
@@ -362,7 +353,6 @@ function hidememo(mno) {
 					} else {
 						memoList();
 					}
-					delt_memoList();
 				}, 1500);
 			}
 		}
@@ -390,7 +380,6 @@ $(document).on("click", ".memo_fav", function() {
 					} else {
 						memoList();
 					}
-					delt_memoList();
 				}, 1500);
 			}
 		}
@@ -410,7 +399,6 @@ $(document).on("click", "#hide_check", function() {
 
 // 메모 수정
 function modifyMemo(mno) {
-	console.log('modifyMemo click');
 	$.ajax({
 		url: "/modifyMemo_mno",
 		type: "POST",
@@ -427,53 +415,6 @@ function modifyMemo(mno) {
 	});
 }
 
-
-
-function memoListTest() {
-	$.ajax({
-		url: "/memoList",
-		type: "GET",
-		dataType: "json",
-		success: function(data) {
-			objs = data.map(obj => {
-				const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
-				const header = card.querySelector("[data-mname]");
-				const menu = card.querySelector("[data-menu]");
-				const navigation = card.querySelector("[data-navigation]");
-				const body = card.querySelector("[data-content]");
-				const footer = card.querySelector("[data-day]");
-
-				let tag = "<ul><li style='--i:0.1s'><a  data-toggle='modal' href='#modifyMemo' onclick='modifyMemo(" + obj.mno + ");' ><ion-icon name='pencil-outline'></ion-icon></a></li><li style='--i:0.2s'><a href='#' onclick='hidememo(" + obj.mno + ");'>";
-				if (obj.hide_gb == 1) {
-					tag += "<ion-icon name='eye-outline'></ion-icon></a></li>";
-				} else {
-					tag += "<ion-icon name='eye-off-outline'></ion-icon></a></li>";
-				}
-
-				tag += "<li style='--i:0.3s'><a href='#' onclick='deletememo(" + obj.mno + ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul>";
-
-				let tag_fav = "";
-
-				if (obj.favorite_gb == 1) {
-					tag_fav += "<button type='button' class='close memo_fav' value='" + obj.mno + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
-				} else {
-					tag_fav += "<button type='button' class='close memo_fav' value='" + obj.mno + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
-				}
-
-				$(menu).html(tag).trigger("create");
-				$(navigation).after(tag_fav);
-				$(header).html(obj.mname).trigger("create");
-				$(body).html(obj.mdescription).trigger("create");
-				$(footer).html(obj.regday).trigger("create");
-				userCardContainer.append(card)
-				return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
-			});
-		},
-		error: function() {
-			alert("request error!");
-		}
-	});
-}
 
 
 

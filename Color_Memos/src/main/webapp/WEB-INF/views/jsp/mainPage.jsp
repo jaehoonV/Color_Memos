@@ -40,13 +40,13 @@
       <ul>
          <li>
             <a href="#">
-               <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
-               <span class="title">Brand Name</span>
+               <span class="icon"><ion-icon name="list-outline"></ion-icon></span>
+               <span class="title">Color Memos</span>
             </a>
          </li>
          <li>
             <a href="#">
-               <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+               <span class="icon" id="memo_list"><ion-icon name="clipboard-outline"></ion-icon></span>
                <span class="title">Dashboard</span>
             </a>
          </li>
@@ -75,15 +75,15 @@
             </a>
          </li>
          <li>
-            <a href="#">
-               <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-               <span class="title">Password</span>
+            <a href="#" id="delete_memo_list">
+               <span class="icon"><ion-icon name="trash-outline"></ion-icon></span>
+               <span class="title">Trash</span>
             </a>
          </li>
          <li>
-            <a href="#">
+            <a href="/logout">
                <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-               <span class="title">Sign out</span>
+               <span class="title">Log out</span>
             </a>
          </li>
       </ul>
@@ -110,7 +110,7 @@
 		</div>
 	</section>
 
-	<div class="user-cards" data-user-cards-container></div>
+	<div class="user-cards" data-user-cards-container style="opacity: 0;"></div>
 	<template data-user-template>
 		<div class="memo_div">
 			<div class="navigation" data-navigation>
@@ -124,11 +124,6 @@
 			<p class="regday" data-day></p>
 		</div>
 	</template>
-
-	<div id="memo_list"></div>
-
-	<span>Delete Memo List</span>
-	<div id="delt_memo_list"></div>
 
 	<div class="message_class" id="memo_register_message"
 		style="opacity: 0;">

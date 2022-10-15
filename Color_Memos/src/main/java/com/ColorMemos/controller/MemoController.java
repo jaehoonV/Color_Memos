@@ -97,7 +97,7 @@ public class MemoController {
 		return memolist;
 	}
 
-	@RequestMapping(value = "/delt_memoList", method = RequestMethod.POST)
+	@RequestMapping(value = "/delt_memoList", method = RequestMethod.GET)
 	@ResponseBody
 	public List<MemoDTO> delt_memoList(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
 		System.out.println("delete memo list!!");
