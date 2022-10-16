@@ -4,7 +4,6 @@ $(document).ready(function() {
 
 // side navigation
 let side_nav = document.querySelector('.side_nav');
-
 let tog = document.querySelector('.toggle');
 tog.onclick = function() {
 	side_nav.classList.toggle('active');
@@ -14,6 +13,18 @@ tog.onclick = function() {
 		$("#main_content").css("margin-left", "120px");
 	}
 }
+
+// Search
+let search = document.querySelector('.search');
+let close = document.querySelector('.close');
+let searchBox = document.querySelector('.searchBox');
+search.onclick = function () {
+   searchBox.classList.add('active');
+}
+close.onclick = function () {
+   searchBox.classList.remove('active');
+}
+
 
 // 검색
 const userCardTemplate = document.querySelector("[data-user-template]");
@@ -36,6 +47,7 @@ function memoList() {
 		type: "GET",
 		dataType: "json",
 		success: function(data) {
+			$(".user-cards *").remove();
 			objs = data.map(obj => {
 				const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
 				const header = card.querySelector("[data-mname]");
@@ -82,33 +94,40 @@ function memoList() {
 function memoList_h() {
 	$.ajax({
 		url: "/memoList_h",
-		type: "POST",
+		type: "GET",
 		dataType: "json",
 		success: function(data) {
-			$.each(data, (index, obj) => {
+			$(".user-cards *").remove();
+			objs = data.map(obj => {
+				const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
+				const header = card.querySelector("[data-mname]");
+				const menu = card.querySelector("[data-menu]");
+				const navigation = card.querySelector("[data-navigation]");
+				const body = card.querySelector("[data-content]");
+				const footer = card.querySelector("[data-day]");
+				
+				let tag = "<ul><li style='--i:0.1s'><a  data-toggle='modal' href='#modifyMemo' onclick='modifyMemo(" + obj.mno + ");' ><ion-icon name='pencil-outline'></ion-icon></a></li><li style='--i:0.2s'><a href='#' onclick='hidememo(" + obj.mno + ");'>";
+				
+				tag += "<ion-icon name='eye-off-outline'></ion-icon></a></li>";
+				tag += "<li style='--i:0.3s'><a href='#' onclick='deletememo(" + obj.mno + ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul>";
 
-				let tag = "<div class = 'memo_div'>" +
-					"<div class='navigation'><div class='menuToggle'></div><div class='menu'>" +
-					"<ul><li style='--i:0.1s'><a href><ion-icon name='pencil-outline'></ion-icon></a></li>" +
-					"<li style='--i:0.2s'><a href='#' onclick='hidememo(" + obj.mno + ");'>";
-
-				tag += "<ion-icon name='eye-off-outline'></ion-icon></a></li>" +
-
-					"<li style='--i:0.3s'><a href='#' onclick='deletememo(" + obj.mno + ");' ><ion-icon name='trash-outline'></ion-icon></a></li></ul></div></div>";
+				let tag_fav = "";
 
 				if (obj.favorite_gb == 1) {
-					tag += "<button type='button' class='close memo_fav' value='" + obj.mno + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
+					tag_fav += "<button type='button' class='close memo_fav' value='" + obj.mno + "'><img src='/resources/images/star.png' style='width: 20px;'></button>";
 				} else {
-					tag += "<button type='button' class='close memo_fav' value='" + obj.mno + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
+					tag_fav += "<button type='button' class='close memo_fav' value='" + obj.mno + "'><img src='/resources/images/empty_star.png' style='width: 20px;'></button>";
 				}
 
-				tag += "<p style='font-weight:bold;'>" + obj.mname + "</p>" +
-					"<div class = 'memo_content'>" +
-					"<p>" + obj.mdescription + "</p>" +
-					"</div>" + "<p class='regday'>" + obj.regday + "</p>" + "</div>";
-
-				$(".user-cards").append(tag);
-			})
+				$(menu).html(tag).trigger("create");
+				$(navigation).after(tag_fav);
+				$(header).html(obj.mname).trigger("create");
+				$(body).html(obj.mdescription).trigger("create");
+				$(footer).html(obj.regday).trigger("create");
+				userCardContainer.append(card);
+				return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
+			});
+			$(".user-cards").css({ opacity: 0 }).animate({ opacity: 1 }, 700)
 		},
 		error: function() {
 			alert("request error!");

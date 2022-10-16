@@ -34,8 +34,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<div>HI, This page is MainPage.</div>
-	
 	<div class="side_nav">
       <ul>
          <li>
@@ -89,104 +87,111 @@
       </ul>
       <div class="toggle"></div>
    </div>
-   
+
 	<section id="main_content">
-	<!-- Button to Open the Modal -->
-	<button type="button" class="green_class" data-toggle="modal"
-		data-target="#memo_register" id="popup_memo_register">메모 추가</button>
-
-	<!-- search bar -->
-	<div class="search_wrapper">
-		<label for="search">Search</label> <input type="search"
-			id="search_input" data-search>
-	</div>
-
-	<section class="hide_section">
-		<div class="hide_div">
-			<span>hide button</span>
-			<div class="checkbox">
-				<input type="checkbox" id="hide_check"> <label></label>
+		<section class="top_section">
+			<!-- search bar -->
+			<div class="searchBox active">
+				<div class="search">
+					<ion-icon name="search-outline"></ion-icon>
+				</div>
+				<div class="searchInput">
+					<input type="search" placeholder="Search Here" data-search>
+				</div>
+				<div class="close">
+					<ion-icon name="close-outline"></ion-icon>
+				</div>
 			</div>
-		</div>
-	</section>
 
-	<div class="user-cards" data-user-cards-container style="opacity: 0;"></div>
-	<template data-user-template>
-		<div class="memo_div">
-			<div class="navigation" data-navigation>
-				<div class="menuToggle"></div>
-				<div class="menu" data-menu></div>
-			</div>
-			<p style="font-weight: bold;" data-mname></p>
-			<div class="memo_content">
-				<p data-content></p>
-			</div>
-			<p class="regday" data-day></p>
-		</div>
-	</template>
+			<!-- Button to Open the Modal -->
+			<button type="button" class="blue_class" data-toggle="modal" data-target="#memo_register" id="popup_memo_register">
+				<ion-icon name="duplicate-outline"></ion-icon>
+			</button>
 
-	<div class="message_class" id="memo_register_message"
-		style="opacity: 0;">
-		<span>메모가 추가되었습니다.</span>
-	</div>
-
-	<div class="message_class" id="memo_delete_message" style="opacity: 0;">
-		<span>메모가 삭제되었습니다.</span>
-	</div>
-
-	<div class="message_class" id="memo_restore_message"
-		style="opacity: 0;">
-		<span>메모가 복구되었습니다.</span>
-	</div>
-
-	<div class="message_class" id="memo_modify_message" style="opacity: 0;">
-		<span>메모가 수정되었습니다.</span>
-	</div>
-
-	<div class="modal fade" id="memo_register">
-		<div class="modal-dialog modal-dialog-centered memo_register-modal">
-			<div class="modal-content memo_register-modal-content">
-				<form id="memo_register_form" name="memo_register_form">
-					<div class="modal-header memo_header">
-						<input class="memo_title_input" id="mname" type="text"
-							name="mname" placeholder="메모 제목을 입력하세요" />
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<section class="hide_section">
+				<div class="hide_div">
+					<div class="checkbox">
+						<input type="checkbox" id="hide_check"> <label></label>
 					</div>
-					<div class="modal-body">
-						<div class="memo_text_form">
-							<textarea class="memo_input" id="memo_text" name="mdescription"
-								placeholder="메모"></textarea>
+				</div>
+			</section>
+		</section>
+
+		<div class="user-cards" data-user-cards-container style="opacity: 0;"></div>
+		<template data-user-template>
+			<div class="memo_div">
+				<div class="navigation" data-navigation>
+					<div class="menuToggle"></div>
+					<div class="menu" data-menu></div>
+				</div>
+				<p style="font-weight: bold;" data-mname></p>
+				<div class="memo_content">
+					<p data-content></p>
+				</div>
+				<p class="regday" data-day></p>
+			</div>
+		</template>
+
+		<div class="message_class" id="memo_register_message" style="opacity: 0;">
+			<span>메모가 추가되었습니다.</span>
+		</div>
+
+		<div class="message_class" id="memo_delete_message" style="opacity: 0;">
+			<span>메모가 삭제되었습니다.</span>
+		</div>
+
+		<div class="message_class" id="memo_restore_message" style="opacity: 0;">
+			<span>메모가 복구되었습니다.</span>
+		</div>
+
+		<div class="message_class" id="memo_modify_message" style="opacity: 0;">
+			<span>메모가 수정되었습니다.</span>
+		</div>
+
+		<div class="modal fade" id="memo_register">
+			<div class="modal-dialog modal-dialog-centered memo_register-modal">
+				<div class="modal-content memo_register-modal-content">
+					<form id="memo_register_form" name="memo_register_form">
+						<div class="modal-header memo_header">
+							<input class="memo_title_input" id="mname" type="text"
+								name="mname" placeholder="메모 제목을 입력하세요" />
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
-						<button type="button" class="memo_submit">만들기</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- modal closed-->
-
-	<div class="modal fade" id="modifyMemo">
-		<div class="modal-dialog modal-dialog-centered memo_modify-modal">
-			<div class="modal-content memo_modify-modal-content">
-				<form method="post" id="modifyMemoForm" name="memo_modify_form">
-					<input type="hidden" name="mno" id="modify_memo_mno">
-					<div class="modal-header memo_header">
-						<input class="memo_title_input" id="modify_memo_title" type="text"
-							name="mname" placeholder="메모 제목을 입력하세요" />
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-					<div class="modal-body">
-						<div class="memo_text_form">
-							<textarea class="memo_input" id="modify_memo_content"
-								name="mdescription" placeholder="메모"></textarea>
+						<div class="modal-body">
+							<div class="memo_text_form">
+								<textarea class="memo_input" id="memo_text" name="mdescription"
+									placeholder="메모"></textarea>
+							</div>
+							<button type="button" class="memo_submit">만들기</button>
 						</div>
-						<button type="button" class="memo_modify_submit">수정</button>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- modal closed-->
+		<!-- modal closed-->
+
+		<div class="modal fade" id="modifyMemo">
+			<div class="modal-dialog modal-dialog-centered memo_modify-modal">
+				<div class="modal-content memo_modify-modal-content">
+					<form method="post" id="modifyMemoForm" name="memo_modify_form">
+						<input type="hidden" name="mno" id="modify_memo_mno">
+						<div class="modal-header memo_header">
+							<input class="memo_title_input" id="modify_memo_title"
+								type="text" name="mname" placeholder="메모 제목을 입력하세요" />
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<div class="memo_text_form">
+								<textarea class="memo_input" id="modify_memo_content"
+									name="mdescription" placeholder="메모"></textarea>
+							</div>
+							<button type="button" class="memo_modify_submit">수정</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- modal closed-->
 	</section>
 	<script type="module"
 		src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -78,7 +78,7 @@ public class MemoController {
 	}
 
 	// 메모 숨김제외 리스트
-	@RequestMapping(value = "/memoList_h", method = RequestMethod.POST)
+	@RequestMapping(value = "/memoList_h", method = RequestMethod.GET)
 	@ResponseBody
 	public List<MemoDTO> memoList_h(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
 		System.out.println("memo list hide!!");

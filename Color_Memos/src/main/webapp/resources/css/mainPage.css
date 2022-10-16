@@ -5,6 +5,7 @@
 :root { 
 	--bg_color: #edf1f4;
 	--green_color: #00b01c;
+	--blue_color: #287bff;
 }
 
 body {
@@ -21,16 +22,29 @@ p{
 	display: table;
 }
 
-.green_class {
-	background: var(--green_color);
+/* input search type x버튼 제거 */
+input::-ms-clear, input::-ms-reveal{
+	display:none;width:0;height:0;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration{
+	display:none;
+}
+
+.blue_class {
+	background: var(--blue_color);
 }
 
 #popup_memo_register{
-    border: 1px solid var(--green_color);
+    border: 1px solid var(--blue_color);
     border-radius: 10px;
     color: var(--bg_color);
-    padding: 3px 10px;
+    padding: 5px 8px 0px 8px;
     font-weight: 600;
+    font-size: 25px;
+    margin-left: 20px;
 }
 
 .memo_header{
@@ -63,7 +77,7 @@ p{
     width: 65% !important;
     margin: 0 auto;
     height: 380px;
-    background: var(--green_color) !important;
+    background: var(--blue_color) !important;
 }
 
 .memo_register-modal-title, memo_modify-modal-title {
@@ -82,7 +96,7 @@ p{
 	width: 95%;
 	height: 240px;
 	margin: 0 10px;
-	background: var(--green_color) !important;
+	background: var(--blue_color) !important;
 }
 
 .memo_input:focus {
@@ -97,7 +111,7 @@ p{
 	border: 0;
 	width: 540px;
 	margin-left: 20px;
-	background: var(--green_color) !important;
+	background: var(--blue_color) !important;
 }
 
 .memo_title_input:focus {
@@ -182,14 +196,14 @@ p{
 }
 
 .hide_section{
-    padding: 10px 0;
     display: inline-block;
+    margin: auto 0;
+    height: 30px;
 }
 
 .hide_div{
 	width: 150px;
 	text-align: center;
-	margin-left: 80%;
 }
 
 .hide_div{
@@ -266,7 +280,7 @@ p{
 }
 
 .hide_section .checkbox input:checked+label {
-    background: #4BD865;
+    background: var(--blue_color);;
 }
 
 .hide_section .checkbox label {
@@ -278,8 +292,8 @@ p{
 
 .hide_section .checkbox label:after {
     top: 0;
-    width: 30px;
-    height: 30px;
+    width: 29px;
+    height: 29px;
 }
 
 .navigation {
@@ -399,16 +413,71 @@ p{
     color: #0000006b;
 }
 
-.search_wrapper {
-   display: inline-block;
-   width: 50%;
+/* Search Box */
+.searchBox {
+   position: relative;
+   width: 44px;
+   height: 42px;
+   background: #fff;
+   display: flex;
+   justify-content: space-between;
+   transition: 0.5s;
+   overflow: hidden;
+   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+   border-radius: 15px;
+   margin: auto 0;
 }
 
-.search_input {
-   width: 20rem;
-   height: 2rem;
-   font-size: 1rem;
+.searchBox.active {
+   width: 500px;
 }
+
+.searchBox .search {
+   position: relative;
+   min-width: 42px;
+   height: 42px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 1.5em;
+   cursor: pointer;
+}
+
+.searchBox .close {
+   position: relative;
+   width: 60px;
+   height: 42px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   font-size: 1.25em;
+   scale: 0;
+   transition: 0.5s;
+}
+
+.searchBox.active .close{
+   scale: 1;
+   transition-delay: 0.5s;
+}
+
+.searchBox .searchInput{
+   position: absolute;
+   left: 60px;
+   width: calc(100% - 120px);
+   height: 100%;
+   line-height: 60px;
+}
+
+.searchBox .searchInput input{
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   border: none;
+   outline: none;
+   font-size: 1.25em;
+}
+/* Search Box */
 
 .card {
    border: 1px solid black;
@@ -433,9 +502,9 @@ p{
 .side_nav {
    position: fixed;
    inset: 20px;
-   background: #287bff;
+   background: var(--blue_color);
    width: 80px;
-   border-left: 10px solid #287bff;
+   border-left: 10px solid var(--blue_color);
    border-radius: 50px;
    overflow: hidden;
    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.05);
@@ -582,6 +651,7 @@ color: #365fa1;
 
 #main_content{
 	margin-left: 120px;
+	margin-top: 25px;
 	transition: 1s;
 }
 
@@ -590,3 +660,7 @@ ion-icon {
  pointer-events: none;
 }
     
+.top_section {
+	display: flex;
+	margin-left: 12px;
+}
