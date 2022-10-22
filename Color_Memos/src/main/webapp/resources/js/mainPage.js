@@ -79,6 +79,10 @@ function memoList() {
 				$(body).html(obj.mdescription).trigger("create");
 				$(footer).html(obj.regday).trigger("create");
 				userCardContainer.append(card);
+				
+				if(obj.mcolor == "orange"){
+					$(navigation).parent().css({"background" : "#fd7900", "border-color" : "#fd7900"});
+				}
 				return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
 			});
 			
@@ -180,7 +184,8 @@ $(document).ready(function() {
 		let hide_check = $("#hide_check").prop("checked");
 		let objParams = {
 			"mname": $('#mname').val(),
-			"memo_text": $('#memo_text').val().replace(/(?:\r\n|\r|\n)/g, '<br />')
+			"memo_text": $('#memo_text').val().replace(/(?:\r\n|\r|\n)/g, '<br />'),
+			"mcolor": $('#selectedColor').val()
 		};
 
 		$.ajax({
@@ -433,6 +438,15 @@ function modifyMemo(mno) {
 		}
 	});
 }
+
+// 컬러 선택
+$(function () {
+    $('#selectColorTypes li').click(function () {
+        $('#selectColorTypes li').removeClass('selected');
+        $(this).addClass('selected');
+        $('#selectedColor').val($(this).attr('value'));
+    });
+});
 
 
 

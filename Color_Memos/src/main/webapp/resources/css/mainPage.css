@@ -622,7 +622,7 @@ input::-webkit-search-results-decoration{
 }
 
 .side_nav ul li:hover:not(:first-child) a {
-color: #365fa1;
+	color: #365fa1;
 }
 
 .side_nav ul li a .icon{
@@ -657,10 +657,107 @@ color: #365fa1;
 
 /* 아이콘 타이틀 제거 */
 ion-icon {
- pointer-events: none;
+ 	pointer-events: none;
 }
     
 .top_section {
 	display: flex;
 	margin-left: 12px;
 }
+
+.select_color_div{
+	position: absolute;
+    top: -26%;
+    left: 0%;
+    border-radius: 15px;
+    border: 1px solid var(--bg_color);
+    width: 390px;
+    height: 90px;
+    background: var(--bg_color);
+}
+
+/* 색상 */
+.color_li{
+	width: 25px;
+	height: 25px;
+	border-radius: 10px;
+	position: relative;
+	display: inline-block;
+	margin: 7px;
+	transition: 0.5s;
+}
+
+#selectColorTypes{
+	padding-left: 0 !important;
+}
+
+#selectColorTypes li {
+	cursor: pointer;
+}
+
+#selectColorTypes>li:hover {
+	border: 2px solid var(--bg_color);
+	width: 35px;
+	height: 35px;
+	margin: 2px;
+}
+
+#selectColorTypes li span {
+	display: none;
+}
+
+#selectColorTypes>li.selected{
+	border: 2px solid var(--bg_color);
+	width: 35px;
+	height: 35px;
+	margin: 2px;
+}
+
+#color-type-emerald {
+	background-color: #00b19c;
+}
+
+#color-type-green {
+	background-color: #00b01c;
+}
+
+#color-type-yellow {
+	background-color: #ffb800;
+}
+
+#color-type-orange {
+	background-color: #fd7900;
+}
+
+#color-type-red {
+	background-color: #ff3434;
+}
+
+#color-type-pink {
+	background-color: #ff5caa;
+}
+
+#color-type-skyblue {
+	background-color: #00b2ff;
+}
+
+#color-type-blue {
+	background-color: #06f;
+}
+
+#color-type-purple {
+	background-color: #8b00ea;
+}
+
+#color-type-darkgrey {
+	background-color: #999;
+}
+
+#color-type-black {
+	background-color: #111;
+}
+
+#color-type-lightgrey {
+	background-color: #ddd;
+}
+

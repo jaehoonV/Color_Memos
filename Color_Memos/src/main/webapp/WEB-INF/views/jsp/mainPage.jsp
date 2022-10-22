@@ -150,8 +150,38 @@
 
 		<div class="modal fade" id="memo_register">
 			<div class="modal-dialog modal-dialog-centered memo_register-modal">
+				
 				<div class="modal-content memo_register-modal-content">
+					<div class="select_color_div">
+					<ul id="selectColorTypes">
+								<li class="color_li" id="color-type-emerald" value="emerald"><span>emerald</span>
+								</li>
+								<li class="color_li" id="color-type-green" value="green"><span>green</span>
+								</li>
+								<li class="color_li" id="color-type-yellow" value="yellow"><span>yellow</span>
+								</li>
+								<li class="color_li" id="color-type-orange" value="orange"><span>orange</span>
+								</li>
+								<li class="color_li" id="color-type-red" value="red"><span>red</span>
+								</li>
+								<li class="color_li" id="color-type-pink" value="pink"><span>pink</span>
+								</li>
+								<li class="color_li" id="color-type-skyblue" value="skyblue"><span>skyblue</span>
+								</li>
+								<li class="color_li" id="color-type-blue" value="blue"><span>blue</span>
+								</li>
+								<li class="color_li" id="color-type-purple" value="purple"><span>purple</span>
+								</li>
+								<li class="color_li" id="color-type-darkgrey" value="darkgrey"><span>darkgrey</span>
+								</li>
+								<li class="color_li" id="color-type-black" value="black"><span>black</span>
+								</li>
+								<li class="color_li" id="color-type-lightgrey" value="lightgrey"><span>lightgrey</span>
+								</li>
+							</ul>
+				</div>
 					<form id="memo_register_form" name="memo_register_form">
+						<input type="hidden" name="selectedColor" id="selectedColor" value="" />
 						<div class="modal-header memo_header">
 							<input class="memo_title_input" id="mname" type="text"
 								name="mname" placeholder="메모 제목을 입력하세요" />

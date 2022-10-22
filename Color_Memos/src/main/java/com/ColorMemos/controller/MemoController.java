@@ -31,10 +31,11 @@ public class MemoController {
 	// memo 생성
 	@RequestMapping(value = "/memoRegist", method = RequestMethod.POST)
 	public void makeProject(MemoDTO memoDTO, @RequestParam("mname") String mname,
-			@RequestParam("memo_text") String memo_text, HttpServletRequest request, HttpServletResponse response)
+			@RequestParam("memo_text") String memo_text, @RequestParam("mcolor") String mcolor, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		System.out.println("mname >>>>> " + mname);
 		System.out.println("mdescription >>>>> " + memo_text);
+		System.out.println("mcolor >>>>> " + mcolor);
 
 		// 세션 생성
 		HttpSession session = request.getSession();
@@ -48,8 +49,10 @@ public class MemoController {
 		memoDTO.setMdescription(memo_text);
 
 		// 메모 색상
-		if (memoDTO.getMcolor() == null) {
+		if (mcolor.isEmpty()) {
 			memoDTO.setMcolor("Default");
+		} else {
+			memoDTO.setMcolor(mcolor);
 		}
 
 		// 메모 생성
