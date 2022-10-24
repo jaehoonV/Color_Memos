@@ -80,9 +80,12 @@ function memoList() {
 				$(footer).html(obj.regday).trigger("create");
 				userCardContainer.append(card);
 				
-				if(obj.mcolor == "orange"){
-					$(navigation).parent().css({"background" : "#fd7900", "border-color" : "#fd7900"});
+				const mcolor = obj.mcolor;
+				
+				if(mcolor != "Default"){
+					$(navigation).parent().css({"background" : mcolor, "border-color" : mcolor});
 				}
+				
 				return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
 			});
 			
@@ -129,6 +132,13 @@ function memoList_h() {
 				$(body).html(obj.mdescription).trigger("create");
 				$(footer).html(obj.regday).trigger("create");
 				userCardContainer.append(card);
+				
+				const mcolor = obj.mcolor;
+				
+				if(mcolor != "Default"){
+					$(navigation).parent().css({"background" : mcolor, "border-color" : mcolor});
+				}
+				
 				return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
 			});
 			$(".user-cards").css({ opacity: 0 }).animate({ opacity: 1 }, 700)
@@ -162,6 +172,13 @@ $(document).on("click", "#delete_memo_list", function() {
 				$(body).html(obj.mdescription).trigger("create");
 				$(footer).html(obj.regday).trigger("create");
 				userCardContainer.append(card)
+				
+				const mcolor = obj.mcolor;
+				
+				if(mcolor != "Default"){
+					$(navigation).parent().css({"background" : mcolor, "border-color" : mcolor});
+				}
+				
 				return { mname: obj.mname, mdescription: obj.mdescription, regday: obj.regday, element: card }
 			});
 			$(".user-cards").css({ opacity: 0 }).animate({ opacity: 1 }, 700)
@@ -223,9 +240,10 @@ $(document).ready(function() {
 		let objParams = {
 			"mname": $('#modify_memo_title').val(),
 			"mdescription": $('#modify_memo_content').val().replace(/(?:\r\n|\r|\n)/g, '<br />'),
-			"mno": $('#modify_memo_mno').val()
+			"mno": $('#modify_memo_mno').val(),
+			"mcolor": $('#modify_selectedColor').val()
 		};
-
+		
 		$.ajax({
 			type: "POST",
 			url: "/modifyMemo",
@@ -431,7 +449,6 @@ function modifyMemo(mno) {
 			mno: mno,
 		},
 		success: function(data) {
-			console.log(data);
 			$('#modify_memo_title').val(data.mname);
 			$('#modify_memo_content').val(data.mdescription.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n'));
 			$('#modify_memo_mno').val(data.mno);
@@ -445,6 +462,15 @@ $(function () {
         $('#selectColorTypes li').removeClass('selected');
         $(this).addClass('selected');
         $('#selectedColor').val($(this).attr('value'));
+    });
+});
+
+// 컬러 선택
+$(function () {
+    $('#modify_selectColorTypes li').click(function () {
+        $('#modify_selectColorTypes li').removeClass('selected');
+        $(this).addClass('selected');
+        $('#modify_selectedColor').val($(this).attr('value'));
     });
 });
 

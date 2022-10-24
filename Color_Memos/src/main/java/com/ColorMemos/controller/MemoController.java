@@ -31,8 +31,8 @@ public class MemoController {
 	// memo 생성
 	@RequestMapping(value = "/memoRegist", method = RequestMethod.POST)
 	public void makeProject(MemoDTO memoDTO, @RequestParam("mname") String mname,
-			@RequestParam("memo_text") String memo_text, @RequestParam("mcolor") String mcolor, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+			@RequestParam("memo_text") String memo_text, @RequestParam("mcolor") String mcolor,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("mname >>>>> " + mname);
 		System.out.println("mdescription >>>>> " + memo_text);
 		System.out.println("mcolor >>>>> " + mcolor);
@@ -65,7 +65,7 @@ public class MemoController {
 	@ResponseBody
 	public List<MemoDTO> memoList(Model model, HttpServletRequest request, MemoDTO memoDTO) throws Exception {
 		System.out.println("memo list!!");
-		
+
 		List<MemoDTO> memolist = new ArrayList<>();
 
 		// 세션 생성
@@ -76,7 +76,7 @@ public class MemoController {
 
 		// memoList
 		memolist.addAll(memoService.memoList(email));
-		
+
 		return memolist;
 	}
 
@@ -184,15 +184,21 @@ public class MemoController {
 	@ResponseBody
 	@RequestMapping(value = "/modifyMemo", method = RequestMethod.POST)
 	public void modifyMemo(MemoDTO memoDTO, @RequestParam("mname") String mname,
-			@RequestParam("mdescription") String mdescription, @RequestParam("mno") int mno,
-			HttpServletResponse response) throws Exception {
+			@RequestParam("mdescription") String mdescription, @RequestParam("mcolor") String mcolor,
+			@RequestParam("mno") int mno, HttpServletResponse response) throws Exception {
 		System.out.println(">>>>>>>>>modifyMemo<<<<<<<<<<");
 
 		// 메모
 		memoDTO.setMno(mno);
 		memoDTO.setMname(mname);
 		memoDTO.setMdescription(mdescription);
-		System.out.println(memoDTO);
+		
+		// 메모 색상
+		if (mcolor.isEmpty()) {
+			memoDTO.setMcolor("Default");
+		} else {
+			memoDTO.setMcolor(mcolor);
+		}
 
 		// 메모 수정
 		memoService.modifyMemo(memoDTO);

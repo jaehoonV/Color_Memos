@@ -150,36 +150,35 @@
 
 		<div class="modal fade" id="memo_register">
 			<div class="modal-dialog modal-dialog-centered memo_register-modal">
-				
 				<div class="modal-content memo_register-modal-content">
 					<div class="select_color_div">
 					<ul id="selectColorTypes">
-								<li class="color_li" id="color-type-emerald" value="emerald"><span>emerald</span>
-								</li>
-								<li class="color_li" id="color-type-green" value="green"><span>green</span>
-								</li>
-								<li class="color_li" id="color-type-yellow" value="yellow"><span>yellow</span>
-								</li>
-								<li class="color_li" id="color-type-orange" value="orange"><span>orange</span>
-								</li>
-								<li class="color_li" id="color-type-red" value="red"><span>red</span>
-								</li>
-								<li class="color_li" id="color-type-pink" value="pink"><span>pink</span>
-								</li>
-								<li class="color_li" id="color-type-skyblue" value="skyblue"><span>skyblue</span>
-								</li>
-								<li class="color_li" id="color-type-blue" value="blue"><span>blue</span>
-								</li>
-								<li class="color_li" id="color-type-purple" value="purple"><span>purple</span>
-								</li>
-								<li class="color_li" id="color-type-darkgrey" value="darkgrey"><span>darkgrey</span>
-								</li>
-								<li class="color_li" id="color-type-black" value="black"><span>black</span>
-								</li>
-								<li class="color_li" id="color-type-lightgrey" value="lightgrey"><span>lightgrey</span>
-								</li>
-							</ul>
-				</div>
+						<li class="color_li" id="color-type-emerald" value="#00b19c"><span>emerald</span>
+						</li>
+						<li class="color_li" id="color-type-green" value="#00b01c"><span>green</span>
+						</li>
+						<li class="color_li" id="color-type-yellow" value="#ffb800"><span>yellow</span>
+						</li>
+						<li class="color_li" id="color-type-orange" value="#fd7900"><span>orange</span>
+						</li>
+						<li class="color_li" id="color-type-red" value="#ff3434"><span>red</span>
+						</li>
+						<li class="color_li" id="color-type-pink" value="#ff5caa"><span>pink</span>
+						</li>
+						<li class="color_li" id="color-type-skyblue" value="#00b2ff"><span>skyblue</span>
+						</li>
+						<li class="color_li" id="color-type-blue" value="#06f"><span>blue</span>
+						</li>
+						<li class="color_li" id="color-type-purple" value="#8b00ea"><span>purple</span>
+						</li>
+						<li class="color_li" id="color-type-darkgrey" value="#999"><span>darkgrey</span>
+						</li>
+						<li class="color_li" id="color-type-black" value="#111"><span>black</span>
+						</li>
+						<li class="color_li" id="color-type-lightgrey" value="#ddd"><span>lightgrey</span>
+						</li>
+					</ul>
+					</div>
 					<form id="memo_register_form" name="memo_register_form">
 						<input type="hidden" name="selectedColor" id="selectedColor" value="" />
 						<div class="modal-header memo_header">
@@ -203,8 +202,37 @@
 		<div class="modal fade" id="modifyMemo">
 			<div class="modal-dialog modal-dialog-centered memo_modify-modal">
 				<div class="modal-content memo_modify-modal-content">
+					<div class="select_color_div">
+					<ul id="modify_selectColorTypes">
+						<li class="color_li" id="color-type-emerald" value="#00b19c"><span>emerald</span>
+						</li>
+						<li class="color_li" id="color-type-green" value="#00b01c"><span>green</span>
+						</li>
+						<li class="color_li" id="color-type-yellow" value="#ffb800"><span>yellow</span>
+						</li>
+						<li class="color_li" id="color-type-orange" value="#fd7900"><span>orange</span>
+						</li>
+						<li class="color_li" id="color-type-red" value="#ff3434"><span>red</span>
+						</li>
+						<li class="color_li" id="color-type-pink" value="#ff5caa"><span>pink</span>
+						</li>
+						<li class="color_li" id="color-type-skyblue" value="#00b2ff"><span>skyblue</span>
+						</li>
+						<li class="color_li" id="color-type-blue" value="#06f"><span>blue</span>
+						</li>
+						<li class="color_li" id="color-type-purple" value="#8b00ea"><span>purple</span>
+						</li>
+						<li class="color_li" id="color-type-darkgrey" value="#999"><span>darkgrey</span>
+						</li>
+						<li class="color_li" id="color-type-black" value="#111"><span>black</span>
+						</li>
+						<li class="color_li" id="color-type-lightgrey" value="#ddd"><span>lightgrey</span>
+						</li>
+					</ul>
+					</div>
 					<form method="post" id="modifyMemoForm" name="memo_modify_form">
 						<input type="hidden" name="mno" id="modify_memo_mno">
+						<input type="hidden" name="modify_selectedColor" id="modify_selectedColor" value="" />
 						<div class="modal-header memo_header">
 							<input class="memo_title_input" id="modify_memo_title"
 								type="text" name="mname" placeholder="메모 제목을 입력하세요" />

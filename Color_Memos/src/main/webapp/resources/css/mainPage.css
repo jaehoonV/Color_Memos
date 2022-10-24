@@ -687,26 +687,26 @@ ion-icon {
 	transition: 0.5s;
 }
 
-#selectColorTypes{
+#selectColorTypes, #modify_selectColorTypes{
 	padding-left: 0 !important;
 }
 
-#selectColorTypes li {
+#selectColorTypes li, #modify_selectColorTypes li {
 	cursor: pointer;
 }
 
-#selectColorTypes>li:hover {
+#selectColorTypes>li:hover, #modify_selectColorTypes>li:hover {
 	border: 2px solid var(--bg_color);
 	width: 35px;
 	height: 35px;
 	margin: 2px;
 }
 
-#selectColorTypes li span {
+#selectColorTypes li span, #modify_selectColorTypes li span {
 	display: none;
 }
 
-#selectColorTypes>li.selected{
+#selectColorTypes>li.selected, #modify_selectColorTypes>li.selected{
 	border: 2px solid var(--bg_color);
 	width: 35px;
 	height: 35px;
