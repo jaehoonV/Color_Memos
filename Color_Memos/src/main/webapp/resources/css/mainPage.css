@@ -761,3 +761,18 @@ ion-icon {
 	background-color: #ddd;
 }
 
+.fix-wrapper {
+  	position: fixed;
+ 	width: 100%;
+  	top: 0;
+  	z-index: 10;
+}
+
+.fix-wrapper .basic {
+  	width: 0;
+  	border: 2px solid var(--blue_color);
+  	height: 6px;
+  	background: var(--blue_color);
+  	border-radius: 10px;
+}
+

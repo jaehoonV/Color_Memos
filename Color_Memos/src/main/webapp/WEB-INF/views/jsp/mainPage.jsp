@@ -34,6 +34,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
+	<div class="fix-wrapper">
+        <div id="progress-read" class="basic"></div>
+	</div>
 	<div class="side_nav">
       <ul>
          <li>

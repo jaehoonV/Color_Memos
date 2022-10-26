@@ -2,6 +2,14 @@ $(document).ready(function() {
 	memoList();
 })
 
+// page progress bar
+window.addEventListener("scroll", function (event) {
+	var scroll = this.scrollY;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scroll / height * 100 + "%";
+   	document.getElementById('progress-read').style.width = progress;
+});
+
 // side navigation
 let side_nav = document.querySelector('.side_nav');
 let tog = document.querySelector('.toggle');
