@@ -207,29 +207,29 @@
 				<div class="modal-content memo_modify-modal-content">
 					<div class="select_color_div">
 					<ul id="modify_selectColorTypes">
-						<li class="color_li" id="color-type-emerald" value="#00b19c"><span>emerald</span>
+						<li class="color_li mod_color_li" id="color-type-emerald" value="#00b19c"><span>emerald</span>
 						</li>
-						<li class="color_li" id="color-type-green" value="#00b01c"><span>green</span>
+						<li class="color_li mod_color_li" id="color-type-green" value="#00b01c"><span>green</span>
 						</li>
-						<li class="color_li" id="color-type-yellow" value="#ffb800"><span>yellow</span>
+						<li class="color_li mod_color_li" id="color-type-yellow" value="#ffb800"><span>yellow</span>
 						</li>
-						<li class="color_li" id="color-type-orange" value="#fd7900"><span>orange</span>
+						<li class="color_li mod_color_li" id="color-type-orange" value="#fd7900"><span>orange</span>
 						</li>
-						<li class="color_li" id="color-type-red" value="#ff3434"><span>red</span>
+						<li class="color_li mod_color_li" id="color-type-red" value="#ff3434"><span>red</span>
 						</li>
-						<li class="color_li" id="color-type-pink" value="#ff5caa"><span>pink</span>
+						<li class="color_li mod_color_li" id="color-type-pink" value="#ff5caa"><span>pink</span>
 						</li>
-						<li class="color_li" id="color-type-skyblue" value="#00b2ff"><span>skyblue</span>
+						<li class="color_li mod_color_li" id="color-type-skyblue" value="#00b2ff"><span>skyblue</span>
 						</li>
-						<li class="color_li" id="color-type-blue" value="#06f"><span>blue</span>
+						<li class="color_li mod_color_li" id="color-type-blue" value="#06f"><span>blue</span>
 						</li>
-						<li class="color_li" id="color-type-purple" value="#8b00ea"><span>purple</span>
+						<li class="color_li mod_color_li" id="color-type-purple" value="#8b00ea"><span>purple</span>
 						</li>
-						<li class="color_li" id="color-type-darkgrey" value="#999"><span>darkgrey</span>
+						<li class="color_li mod_color_li" id="color-type-darkgrey" value="#999"><span>darkgrey</span>
 						</li>
-						<li class="color_li" id="color-type-black" value="#111"><span>black</span>
+						<li class="color_li mod_color_li" id="color-type-black" value="#111"><span>black</span>
 						</li>
-						<li class="color_li" id="color-type-lightgrey" value="#ddd"><span>lightgrey</span>
+						<li class="color_li mod_color_li" id="color-type-lightgrey" value="#ddd"><span>lightgrey</span>
 						</li>
 					</ul>
 					</div>

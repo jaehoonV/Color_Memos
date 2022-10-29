@@ -291,6 +291,7 @@ $(document).ready(function() {
 $('#memo_register').on('hidden.bs.modal', function(e) {
 	// 모달 종료 시,
 	document.forms['memo_register_form'].reset(); // 폼의 전체 값 초기화 처리
+	$('#selectColorTypes li').removeClass('selected');
 });
 
 // 메모 삭제
@@ -460,6 +461,13 @@ function modifyMemo(mno) {
 			$('#modify_memo_title').val(data.mname);
 			$('#modify_memo_content').val(data.mdescription.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n'));
 			$('#modify_memo_mno').val(data.mno);
+			$('#modify_selectedColor').val(data.mcolor);
+			$('.mod_color_li').each(function(){
+				if($(this).attr('value') == data.mcolor){
+					$(this).addClass('selected');
+				}
+			});
+			
 		}
 	});
 }
@@ -482,6 +490,11 @@ $(function () {
     });
 });
 
+// 메모 수정 모달창 데이터 초기화
+$('#modifyMemo').on('hidden.bs.modal', function () {
+	$('#modify_selectColorTypes li').removeClass('selected');
+	document.forms['modifyMemoForm'].reset(); // 폼의 전체 값 초기화 처리
+});
 
 
 
