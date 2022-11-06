@@ -10,8 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Main Page</title>
-<!-- css -->
-<link href="/resources/css/mainPage.css" rel="stylesheet">
 <!-- jQuery -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -32,6 +30,8 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<!-- css -->
+<link href="/resources/css/mainPage.css" rel="stylesheet">
 </head>
 <body>
 	<div class="fix-wrapper">
@@ -117,6 +117,10 @@
 						<input type="checkbox" id="hide_check"> <label></label>
 					</div>
 				</div>
+			</section>
+			<section class="color_mode">
+				<span class="active" onclick="changeColor('#edf1f4')" style="--clr:#edf1f4;"></span>
+      			<span  onclick="changeColor('#202b38')" style="--clr:#202b38;"></span>
 			</section>
 		</section>
 

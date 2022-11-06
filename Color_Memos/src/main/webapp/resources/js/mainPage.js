@@ -496,6 +496,16 @@ $('#modifyMemo').on('hidden.bs.modal', function () {
 	document.forms['modifyMemoForm'].reset(); // 폼의 전체 값 초기화 처리
 });
 
+// color mode
+function changeColor(color){
+   $('body').css('background', color);
+
+   document.querySelectorAll('.color_mode span').forEach(function(item){
+      item.classList.remove('active');
+   })
+   event.target.classList.add('active');
+}
+
 
 
 
