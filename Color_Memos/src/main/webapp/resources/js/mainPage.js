@@ -288,10 +288,21 @@ $(document).ready(function() {
 
 });
 
+// 등록 모달 종료 시
 $('#memo_register').on('hidden.bs.modal', function(e) {
-	// 모달 종료 시,
 	document.forms['memo_register_form'].reset(); // 폼의 전체 값 초기화 처리
 	$('#selectColorTypes li').removeClass('selected');
+	$('.memo_register-modal-content').css('background', 'floralwhite');
+	$('.memo_title_input').css('background', 'floralwhite');
+	$('.memo_input').css('background', 'floralwhite');
+});
+
+// 수정 모달 종료 시
+$('#modifyMemo').on('hidden.bs.modal', function(e) {
+	$('#modify_selectColorTypes li').removeClass('selected');
+	$('.memo_modify-modal-content').css('background', 'floralwhite');
+	$('#modify_memo_title').css('background', 'floralwhite');
+	$('#modify_memo_content').css('background', 'floralwhite');
 });
 
 // 메모 삭제
@@ -462,6 +473,10 @@ function modifyMemo(mno) {
 			$('#modify_memo_content').val(data.mdescription.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n'));
 			$('#modify_memo_mno').val(data.mno);
 			$('#modify_selectedColor').val(data.mcolor);
+			$('.memo_modify-modal-content').css('background', data.mcolor);
+			$('#modify_memo_title').css('background', data.mcolor);
+			$('#modify_memo_content').css('background', data.mcolor);
+			
 			$('.mod_color_li').each(function(){
 				if($(this).attr('value') == data.mcolor){
 					$(this).addClass('selected');
@@ -478,6 +493,9 @@ $(function () {
         $('#selectColorTypes li').removeClass('selected');
         $(this).addClass('selected');
         $('#selectedColor').val($(this).attr('value'));
+        $('.memo_register-modal-content').css('background', $(this).attr('value'));
+		$('.memo_title_input').css('background', $(this).attr('value'));
+		$('.memo_input').css('background', $(this).attr('value'));
     });
 });
 
@@ -487,6 +505,9 @@ $(function () {
         $('#modify_selectColorTypes li').removeClass('selected');
         $(this).addClass('selected');
         $('#modify_selectedColor').val($(this).attr('value'));
+        $('.memo_modify-modal-content').css('background', $(this).attr('value'));
+		$('#modify_memo_title').css('background', $(this).attr('value'));
+		$('#modify_memo_content').css('background', $(this).attr('value'));
     });
 });
 
@@ -505,6 +526,7 @@ function changeColor(color){
    })
    event.target.classList.add('active');
 }
+
 
 
 

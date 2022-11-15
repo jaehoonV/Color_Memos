@@ -6,6 +6,7 @@
 	--bg_color: #edf1f4;
 	--green_color: #00b01c;
 	--blue_color: #287bff;
+	--default_color: floralwhite;
 }
 
 body {
@@ -39,7 +40,7 @@ input::-webkit-search-results-decoration{
 }
 
 #popup_memo_register{
-    border: 1px solid var(--blue_color);
+    border: 1px solid var(--default_color);
     border-radius: 10px;
     color: var(--bg_color);
     padding: 5px 8px 0px 8px;
@@ -49,23 +50,24 @@ input::-webkit-search-results-decoration{
 }
 
 .memo_header{
-	padding: 0.5rem 1rem !important;
+	padding: 0.2rem 1rem !important;
 }
 
 .memo_submit, .memo_modify_submit {
 	all: unset;
 	background: gray;
-	margin: 0 35%;
+	margin: 0 auto;
 	width: 100px;
 	height: 36px;
 	line-height: 36px;
 	text-align: center;
 	color: #fff;
 	border-radius: 4px;
+	display: block;
 }
 
 .memo_submit:hover, .memo_modify_submit:hover {
-	background: #7163c4;
+	background: #565555;
 }
 
 .memo_register-modal, .memo_modify-modal {
@@ -75,10 +77,10 @@ input::-webkit-search-results-decoration{
 .memo_register-modal-content, .memo_modify-modal-content {
 	border-radius: 10px !important;
     border: 1px solid #777 !important;
-    width: 65% !important;
+    width: 50% !important;
     margin: 0 auto;
     height: 380px;
-    background: var(--blue_color) !important;
+    background: var(--default_color);
 }
 
 .memo_register-modal-title, memo_modify-modal-title {
@@ -87,17 +89,19 @@ input::-webkit-search-results-decoration{
 	color: #333;
 }
 
+.modal-body{
+	padding: 3px 5px !important;
+}
+
 .memo_input {
 	resize: none;
 	box-sizing: border-box;
-	padding: 10.5px 20px;
+	padding: 10.5px 10px;
 	border-radius: 4px;
 	border: 1px solid #ddd;
-	margin-bottom: 20px;
-	width: 95%;
-	height: 240px;
-	margin: 0 10px;
-	background: var(--blue_color) !important;
+	width: 100%;
+	height: 280px;
+	background: var(--default_color);
 }
 
 .memo_input:focus {
@@ -111,8 +115,7 @@ input::-webkit-search-results-decoration{
 	border-radius: 0;
 	border: 0;
 	width: 540px;
-	margin-left: 20px;
-	background: var(--blue_color) !important;
+	background: var(--default_color);
 }
 
 .memo_title_input:focus {
@@ -672,7 +675,7 @@ ion-icon {
     left: 0%;
     border-radius: 15px;
     border: 1px solid var(--bg_color);
-    width: 390px;
+    width: 300px;
     height: 90px;
     background: var(--bg_color);
 }
