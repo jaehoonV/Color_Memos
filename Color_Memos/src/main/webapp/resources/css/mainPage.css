@@ -511,7 +511,7 @@ input::-webkit-search-results-decoration{
    border-left: 10px solid var(--blue_color);
    border-radius: 50px;
    overflow: hidden;
-   box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.05);
+   box-shadow: 15px 15px 25px rgba(0 0 0 / 20%);
    transition: 0.5s;
 }
 
@@ -791,6 +791,7 @@ ion-icon {
    align-items: center;
    flex-direction: row;
    border-radius: 20px;
+   box-shadow: 5px 5px 10px 2px rgb(0 0 0 / 10%);
 }
 
 .color_mode span{
