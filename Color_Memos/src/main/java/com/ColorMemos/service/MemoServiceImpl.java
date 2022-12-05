@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
+
+import com.ColorMemos.domain.ColorDTO;
 import com.ColorMemos.domain.MemoDTO;
 import com.ColorMemos.mapper.MemoMapper;
 import com.ColorMemos.service.MemoService;
@@ -97,6 +99,12 @@ public class MemoServiceImpl implements MemoService{
 	@Override
 	public void modifyMemo(MemoDTO memoDTO) throws Exception {
 		memoMapper.modifyMemo(memoDTO);
+	}
+	
+	// 컬러 리스트
+	@Override
+	public List<ColorDTO> color_list(String email) throws Exception {
+		return memoMapper.color_list(email);
 	}
 
 }

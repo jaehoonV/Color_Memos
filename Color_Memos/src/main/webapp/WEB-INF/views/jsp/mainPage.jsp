@@ -28,8 +28,11 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
 	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
 <!-- css -->
 <link href="/resources/css/mainPage.css" rel="stylesheet">
 </head>
@@ -70,7 +73,7 @@
             </a>
          </li>
          <li>
-            <a href="#">
+            <a href="#" id="setting">
                <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                <span class="title">Setting</span>
             </a>
@@ -257,6 +260,15 @@
 			</div>
 		</div>
 		<!-- modal closed-->
+		
+		<div id="color-picker-div">
+			<div class="user-color" data-user-color-container style="opacity: 0;"></div>
+			<template color-data-user-template>
+				<div class="color_div">
+				</div>
+			</template>
+			<input id="color-picker" value='#ddd' />
+		</div>
 	</section>
 	<script type="module"
 		src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

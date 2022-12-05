@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ColorMemos.domain.ColorDTO;
 import com.ColorMemos.domain.MemberDTO;
 import com.ColorMemos.domain.MemoDTO;
 import com.ColorMemos.service.MemoService;
@@ -204,6 +205,26 @@ public class MemoController {
 		memoService.modifyMemo(memoDTO);
 
 		response.getWriter().print(true);
+	}
+	
+	// 컬러 리스트
+	@RequestMapping(value = "/get_color_list", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ColorDTO> get_color_list(Model model, HttpServletRequest request) throws Exception {
+		System.out.println("delete memo list!!");
+
+		List<ColorDTO> color_list = new ArrayList<>();
+
+		// 세션 생성
+		HttpSession session = request.getSession();
+
+		// email 세션 가져옴
+		String email = (String) session.getAttribute("email");
+
+		// memoList
+		color_list.addAll(memoService.color_list(email));
+
+		return color_list;
 	}
 
 }

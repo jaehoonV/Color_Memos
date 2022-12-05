@@ -142,4 +142,15 @@
 		WHERE MNO = #{mno}
 	</update>
 	
+	<!-- 컬러 리스트 -->
+	<select id="color_list" resultType="com.ColorMemos.domain.ColorDTO">
+		SELECT
+			CNO 	
+			,CNAME
+			,REGID
+		FROM COLOR
+		WHERE REGID = #{email}
+		ORDER BY CNO DESC
+	</select>
+	
 </mapper>

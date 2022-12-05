@@ -1,5 +1,12 @@
 $(document).ready(function() {
 	memoList();
+	
+	$('#color-picker').spectrum({
+  	type: "component",
+  	hideAfterPaletteSelect: true,
+  	showInput: true,
+  	showButtons: false
+	});
 })
 
 // page progress bar
@@ -37,6 +44,8 @@ close.onclick = function () {
 // 검색
 const userCardTemplate = document.querySelector("[data-user-template]");
 const userCardContainer = document.querySelector("[data-user-cards-container]");
+const userColorTemplate = document.querySelector("[color-data-user-template]");
+const userColorContainer = document.querySelector("[data-user-color-container]");
 const searchInput = document.querySelector("[data-search]");
 
 let objs = []
@@ -56,6 +65,7 @@ function memoList() {
 		dataType: "json",
 		success: function(data) {
 			$(".user-cards *").remove();
+			$("#color-picker-div").hide();
 			objs = data.map(obj => {
 				const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
 				const header = card.querySelector("[data-mname]");
@@ -113,6 +123,7 @@ function memoList_h() {
 		dataType: "json",
 		success: function(data) {
 			$(".user-cards *").remove();
+			$("#color-picker-div").hide();
 			objs = data.map(obj => {
 				const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
 				const header = card.querySelector("[data-mname]");
@@ -165,6 +176,7 @@ $(document).on("click", "#delete_memo_list", function() {
 		dataType: "json",
 		success: function(data) {
 			$(".user-cards *").remove();
+			$("#color-picker-div").hide();
 			objs = data.map(obj => {
 				const card = userCardTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
 				const header = card.querySelector("[data-mname]");
@@ -200,6 +212,7 @@ $(document).on("click", "#delete_memo_list", function() {
 // 메모리스트
 $(document).on("click", "#memo_list", function() {
 	$(".user-cards *").remove();
+	$("#color-picker-div").hide();
 	memoList();
 });
 
@@ -526,6 +539,31 @@ function changeColor(color){
    })
    event.target.classList.add('active');
 }
+
+// color list
+$(document).on("click", "#setting", function() {
+	$.ajax({
+	url: "/get_color_list",
+	type: "GET",
+	dataType: "json",
+	success: function(data) {
+		$(".user-cards *").remove();
+		$(".user-color *").remove();
+		$("#color-picker-div").show();
+		objs = data.map(obj => {
+			const color_card = userColorTemplate.content.cloneNode(true).children[0]; // 첫번째 자식을 가져옴
+			let tag = "<div class='color_input' value='" + obj.cno + "' style='background:" + obj.cname + "'></div>";
+			$(color_card).html(tag).trigger("create");
+			userColorContainer.append(color_card);
+			return { cno: obj.cno, cname: obj.cname, regid: obj.regid, element: color_card };
+		});	
+		$(".user-color").css({ opacity: 0 }).animate({ opacity: 1 }, 700)
+	},
+	error: function() {
+		alert("request error!");
+	}
+	})
+})
 
 
 

@@ -2,6 +2,7 @@ package com.ColorMemos.mapper;
 
 import java.util.List;
 
+import com.ColorMemos.domain.ColorDTO;
 import com.ColorMemos.domain.MemoDTO;
 
 public interface MemoMapper {
@@ -46,6 +47,9 @@ public interface MemoMapper {
 	public MemoDTO modifyMemo_mno(int mno) throws Exception;
 
 	public void modifyMemo(MemoDTO memoDTO) throws Exception;
+	
+	// 컬러 리스트
+	public List<ColorDTO> color_list(String email) throws Exception;
 
 
 }

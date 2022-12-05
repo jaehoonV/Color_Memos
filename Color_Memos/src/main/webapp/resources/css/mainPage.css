@@ -810,3 +810,26 @@ ion-icon {
    transition: 0.5s;
 }
 
+#color-picker-div{
+	display: none;
+	width: 300px;
+    margin: 3rem auto;
+    transition: 0.5s;
+}
+
+.sp-colorize-container{
+	width: 35px !important;
+} 
+
+.color_div{
+	display: inline-block;	
+}
+
+.color_input{
+	width: 40px;
+    height: 40px;
+    margin: 7px;
+    border: none;
+    border-radius: 10px;
+}
+
