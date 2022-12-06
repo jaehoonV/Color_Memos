@@ -7,6 +7,46 @@ $(document).ready(function() {
   	showInput: true,
   	showButtons: false
 	});
+	
+	let color_data = [];
+	
+	$.ajax({
+		url: "/get_color_list",
+		type: "GET",
+		dataType: "json",
+		success: function(data) {
+			color_data = data.map(obj => {
+				let tag = "<li class='color_li' value='" + obj.cname + "' style='background:" + obj.cname + "'><span>" + obj.cname + "</span></li>";
+				$("#selectColorTypes").append(tag) ;
+				$("#modify_selectColorTypes").append(tag) ;
+			});	
+		},
+		error: function() {
+			alert("request error!");
+		}
+	})
+	
+	// 컬러 선택
+	$(document).on("click", "#selectColorTypes li", function () {
+		$('#selectColorTypes li').removeClass('selected');
+		$(this).addClass('selected');
+		$('#selectedColor').val($(this).attr('value'));
+		$('.memo_register-modal-content').css('background', $(this).attr('value'));
+		$('.memo_title_input').css('background', $(this).attr('value'));
+		$('.memo_input').css('background', $(this).attr('value'));
+	});    
+	
+	
+	// 컬러 선택
+	$(document).on("click", "#modify_selectColorTypes li", function () {
+		$('#modify_selectColorTypes li').removeClass('selected');
+		$(this).addClass('selected');
+		$('#modify_selectedColor').val($(this).attr('value'));
+		$('.memo_modify-modal-content').css('background', $(this).attr('value'));
+		$('#modify_memo_title').css('background', $(this).attr('value'));
+		$('#modify_memo_content').css('background', $(this).attr('value'));
+	});
+	
 })
 
 // page progress bar
@@ -48,7 +88,7 @@ const userColorTemplate = document.querySelector("[color-data-user-template]");
 const userColorContainer = document.querySelector("[data-user-color-container]");
 const searchInput = document.querySelector("[data-search]");
 
-let objs = []
+let objs = [];
 
 searchInput.addEventListener("input", (e) => { // 입력하는 것에 모두 실행
 	const value = e.target.value.toLowerCase() // 소문자, 대문자 구분 X
@@ -490,7 +530,8 @@ function modifyMemo(mno) {
 			$('#modify_memo_title').css('background', data.mcolor);
 			$('#modify_memo_content').css('background', data.mcolor);
 			
-			$('.mod_color_li').each(function(){
+			$('#modify_selectColorTypes li').each(function(){
+				console.log(data.mcolor);
 				if($(this).attr('value') == data.mcolor){
 					$(this).addClass('selected');
 				}
@@ -499,30 +540,6 @@ function modifyMemo(mno) {
 		}
 	});
 }
-
-// 컬러 선택
-$(function () {
-    $('#selectColorTypes li').click(function () {
-        $('#selectColorTypes li').removeClass('selected');
-        $(this).addClass('selected');
-        $('#selectedColor').val($(this).attr('value'));
-        $('.memo_register-modal-content').css('background', $(this).attr('value'));
-		$('.memo_title_input').css('background', $(this).attr('value'));
-		$('.memo_input').css('background', $(this).attr('value'));
-    });
-});
-
-// 컬러 선택
-$(function () {
-    $('#modify_selectColorTypes li').click(function () {
-        $('#modify_selectColorTypes li').removeClass('selected');
-        $(this).addClass('selected');
-        $('#modify_selectedColor').val($(this).attr('value'));
-        $('.memo_modify-modal-content').css('background', $(this).attr('value'));
-		$('#modify_memo_title').css('background', $(this).attr('value'));
-		$('#modify_memo_content').css('background', $(this).attr('value'));
-    });
-});
 
 // 메모 수정 모달창 데이터 초기화
 $('#modifyMemo').on('hidden.bs.modal', function () {
@@ -564,6 +581,7 @@ $(document).on("click", "#setting", function() {
 	}
 	})
 })
+
 
 
 

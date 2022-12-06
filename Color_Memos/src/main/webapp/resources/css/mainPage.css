@@ -693,6 +693,8 @@ ion-icon {
 
 #selectColorTypes, #modify_selectColorTypes{
 	padding-left: 0 !important;
+	height: 85px;
+    overflow-y: auto;
 }
 
 #selectColorTypes li, #modify_selectColorTypes li {
@@ -715,54 +717,6 @@ ion-icon {
 	width: 35px;
 	height: 35px;
 	margin: 2px;
-}
-
-#color-type-emerald {
-	background-color: #00b19c;
-}
-
-#color-type-green {
-	background-color: #00b01c;
-}
-
-#color-type-yellow {
-	background-color: #ffb800;
-}
-
-#color-type-orange {
-	background-color: #fd7900;
-}
-
-#color-type-red {
-	background-color: #ff3434;
-}
-
-#color-type-pink {
-	background-color: #ff5caa;
-}
-
-#color-type-skyblue {
-	background-color: #00b2ff;
-}
-
-#color-type-blue {
-	background-color: #06f;
-}
-
-#color-type-purple {
-	background-color: #8b00ea;
-}
-
-#color-type-darkgrey {
-	background-color: #999;
-}
-
-#color-type-black {
-	background-color: #111;
-}
-
-#color-type-lightgrey {
-	background-color: #ddd;
 }
 
 .fix-wrapper {
@@ -833,3 +787,29 @@ ion-icon {
     border-radius: 10px;
 }
 
+#selectColorTypes::-webkit-scrollbar, #modify_selectColorTypes::-webkit-scrollbar{
+	width: 10px;
+	height: 7px;
+	padding-right: 10px;
+}
+
+#selectColorTypes::-webkit-scrollbar-button, #modify_selectColorTypes::-webkit-scrollbar-button {
+	width: 7px;
+	height: 8px;
+}
+
+#selectColorTypes::-webkit-scrollbar-corner, #modify_selectColorTypes::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+#selectColorTypes::-webkit-scrollbar-thumb, #modify_selectColorTypes::-webkit-scrollbar-thumb {
+	background: #999;
+	border: 1px solid #999;
+	border-radius: 50px;
+}
+
+#selectColorTypes::-webkit-scrollbar-track, #modify_selectColorTypes::-webkit-scrollbar-track{
+	background: transparent;
+	border: 0 none transparent;
+	border-radius: 53px;
+}
