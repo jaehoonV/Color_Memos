@@ -2,6 +2,8 @@ package com.ColorMemos.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ColorMemos.domain.ColorDTO;
 import com.ColorMemos.domain.MemoDTO;
 
@@ -50,6 +52,9 @@ public interface MemoMapper {
 	
 	// 컬러 리스트
 	public List<ColorDTO> color_list(String email) throws Exception;
+	
+	// 컬러 저장
+	public void saveColor(@Param("color")String color, @Param("email")String email) throws Exception;
 
 
 }

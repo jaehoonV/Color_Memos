@@ -51,5 +51,8 @@ public interface MemoService {
 	
 	// 컬러 리스트
 	public List<ColorDTO> color_list(String email) throws Exception;
+	
+	// 컬러 저장
+	public void saveColor(String color, String email) throws Exception;
 
 }

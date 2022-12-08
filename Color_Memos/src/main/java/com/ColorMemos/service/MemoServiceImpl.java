@@ -106,5 +106,11 @@ public class MemoServiceImpl implements MemoService{
 	public List<ColorDTO> color_list(String email) throws Exception {
 		return memoMapper.color_list(email);
 	}
+	
+	// 컬러 저장
+	@Override
+	public void saveColor(String color, String email) throws Exception {
+		memoMapper.saveColor(color, email);
+	}
 
 }

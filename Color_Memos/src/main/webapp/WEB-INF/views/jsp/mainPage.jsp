@@ -216,12 +216,15 @@
 		<!-- modal closed-->
 		
 		<div id="color-picker-div">
-			<div class="user-color" data-user-color-container style="opacity: 0;"></div>
+			<div>
+				<input id="color-picker" value='#ddd' />
+				<button type="button" id="color_save_btn">SAVE</button>
+			</div>
+			<div class="user-color" data-user-color-container style="opacity: 0; margin-top: 20px;"></div>
 			<template color-data-user-template>
 				<div class="color_div">
 				</div>
 			</template>
-			<input id="color-picker" value='#ddd' />
 		</div>
 	</section>
 	<script type="module"

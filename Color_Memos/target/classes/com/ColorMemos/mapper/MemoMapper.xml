@@ -153,4 +153,10 @@
 		ORDER BY CNO DESC
 	</select>
 	
+	<!-- 컬러 저장 -->
+	<insert id="saveColor">
+		INSERT INTO COLOR (CNO, CNAME, REGID)
+		VALUES(	COLOR_SEQ.NEXTVAL, #{color}, #{email})
+	</insert>
+	
 </mapper>

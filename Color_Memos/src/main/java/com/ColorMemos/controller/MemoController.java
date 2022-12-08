@@ -226,5 +226,21 @@ public class MemoController {
 
 		return color_list;
 	}
-
+	
+	// 컬러 저장
+	@RequestMapping(value = "/save_color", method = RequestMethod.POST)
+	public void save_color(@RequestParam("picked_color") String picked_color, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("save_color!! color = " + picked_color);
+		// 세션 생성
+		HttpSession session = request.getSession();
+		// email 세션 가져옴
+		String email = (String) session.getAttribute("email");
+		
+		String color = "#" + picked_color;
+		
+		System.out.println("color = " + color);
+		memoService.saveColor(color, email);
+		
+		response.getWriter().print(true);
+	}
 }

@@ -813,3 +813,17 @@ ion-icon {
 	border: 0 none transparent;
 	border-radius: 53px;
 }
+
+#color_save_btn{
+	position: relative;
+    left: 10px;
+    top: -8px;
+    border-radius: 8px;
+    border: 0;
+    background: var(--blue_color);
+    color: white;
+    width: 65px;
+    height: 28px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}

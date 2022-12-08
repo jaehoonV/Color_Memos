@@ -559,6 +559,11 @@ function changeColor(color){
 
 // color list
 $(document).on("click", "#setting", function() {
+	color_list();
+})
+
+// color list ajax
+function color_list(){
 	$.ajax({
 	url: "/get_color_list",
 	type: "GET",
@@ -580,10 +585,50 @@ $(document).on("click", "#setting", function() {
 		alert("request error!");
 	}
 	})
-})
+}
 
+// color-picker
+let hex = "dddddd";
+$("#color-picker").on('move.spectrum', function(e, tinycolor) {
+    hex = tinycolor.toHex();
+});
 
-
+// color save
+$('#color_save_btn').on('click', function() {
+	let color = hex;
+	$.ajax({
+		url: "/save_color",
+		type: "POST",
+		dataType: "json",
+		data: {
+			picked_color: color
+		},
+		success: function(data) {
+			$(".user-color *").remove();
+			color_list();
+			
+			$("#selectColorTypes *").remove();
+			$("#modify_selectColorTypes *").remove();
+			let color_data = [];
+	
+			$.ajax({
+				url: "/get_color_list",
+				type: "GET",
+				dataType: "json",
+				success: function(data) {
+					color_data = data.map(obj => {
+						let tag = "<li class='color_li' value='" + obj.cname + "' style='background:" + obj.cname + "'><span>" + obj.cname + "</span></li>";
+						$("#selectColorTypes").append(tag) ;
+						$("#modify_selectColorTypes").append(tag) ;
+					});	
+				},
+				error: function() {
+					alert("request error!");
+				}
+			})
+		}
+	});	
+});
 
 
 
